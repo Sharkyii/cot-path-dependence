@@ -10,9 +10,9 @@ We took a reasoning model (DeepSeek-R1-Distill-Qwen-7B), gave it math problems, 
 
 Then we let each of those moments continue naturally, many times over, and checked: do they keep agreeing, or does their shared history start pulling them apart?
 
-**Across 66 tested pairs, they kept agreeing.** The model's current state really does seem to be "enough." History barely adds anything on top of it.
+**Across 66 tested pairs and 17 distinct problems: mostly, but not always.** 14 of 17 problems agreed every single time, no matter which history got them there. But 3 problems didn't, and the disagreement was real, not noise, once we used the right statistical test (our first attempt at combining the results used a method that turned out to be mathematically broken on data like this, more on that below). So the honest answer is "yes, current state is usually enough, but there's a specific, identifiable minority of cases where it isn't, and you can't predict from the answer alone which case you're in."
 
-That is a useful thing to know if you are building or using an early-stopping tool: you are probably safe to trust the current answer without needing to remember how the model got there.
+That's a more useful and more interesting finding for anyone building an early-stopping tool than a clean "always safe" would have been: it tells you both that you're mostly fine, and roughly where the exceptions live.
 
 ## A picture is worth it
 
@@ -20,13 +20,21 @@ That is a useful thing to know if you are building or using an early-stopping to
   <img src="paper/figures/fig4_continuous_regression.png" width="55%">
 </p>
 
-Each dot is one tested pair. The x-axis is how differently two moments "felt" (confidence and uncertainty combined). The y-axis is how much their eventual answers actually diverged. If history mattered, you'd expect the dots to trend upward as you move right. They don't. The line is flat, and the shaded band (our uncertainty about that line) comfortably includes "no relationship at all."
+Each dot is one tested pair from the larger of our two data batches. The x-axis is how differently two moments "felt" (confidence and uncertainty combined). The y-axis is how much their eventual answers actually diverged. The line looks flat here, which was our first read: "state distance doesn't predict divergence." That's true as far as it goes, but it isn't quite the question we actually needed answered (see below).
 
 <p align="center">
   <img src="paper/figures/fig5_sges_comparison.png" width="80%">
 </p>
 
-We also tried building a smarter stopping rule that pays attention to confidence, not just the answer. It got the same accuracy as a much dumber rule that just stops halfway through, and used *more* compute doing it. Another point in favor of "the simple thing is already enough."
+We also tried building a smarter stopping rule that pays attention to confidence, not just the answer. It got the same accuracy as a much dumber rule that just stops halfway through, and used *more* compute doing it, on the typical problems this comparison was run on. Where it *should* pay off, the atypical minority below, is untested.
+
+## The correction that changed the paper's conclusion
+
+Early on, we combined all 66 pairs' individual test results using a standard statistical tool (Fisher's method) and got a strong "no effect" verdict. It turned out that tool was the wrong one for this data: 56 of the 66 pairs were cases where both sides agreed 100% of the time, which makes that pair's individual test mathematically return "no signal detected" no matter what, not because the model is definitely consistent there, but because there's nothing left to measure once both sides already agree completely. Averaging those in with the pairs that *did* show disagreement quietly buried the real signal.
+
+Once we fixed that (details and code in `scripts/problem_clustered_permutation_test.py`), the picture flipped: there's a real, statistically robust effect, and it's concentrated in exactly 3 problems out of the 17 we tested. Two of them show the model deciding whether to commit to an answer or trail off unstated, depending on history. The third, more interesting one, shows the *lower-confidence* side of a matched pair scattering into different wrong answers while the higher-confidence side stays correct, something a system that only checks "does the current answer match" (as most early-stopping tools do) would never catch.
+
+We're upfront in the paper (Objection 4 in the Limitations section) that finding this after external review flagged the original method is itself a real methodological risk worth naming, and that the next real test of this claim is an independent replication, not more digging into the same 66 pairs.
 
 ## What's actually in this repository
 
