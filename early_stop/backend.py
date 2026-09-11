@@ -217,9 +217,44 @@ class HFBackend:
     def device(self):
         return self.model.device
 
+    def _generate_retrying_oom(self, generate_call):
+        """Runs the zero-arg callable `generate_call` (a closure wrapping
+        one self.model.generate(...) invocation, kept as a callable rather
+        than reconstructed kwargs so each call site's existing, verified
+        positional/keyword argument style is untouched) with a defensive
+        empty_cache() immediately before the call (keeps the allocator's
+        free pool defragmented ahead of a new allocation) and ONE retry on
+        CUDA OOM (empty_cache() again, then retry) before giving up.
+
+        Exists because an audit1a diagnostic run (2026-09-12, see
+        REVISION_PLAN.md Tier 1) hit real near-total VRAM exhaustion after
+        ~50-90 consecutive forced_extract_with_scores calls on a single
+        trajectory (d3_prob5, a long problem: 56-94 step boundaries per
+        trace) -- the allocator reported 59MB free out of 22GB partway
+        through, and that trajectory's scoring quality collapsed (4/94
+        scored vs the previous trajectory's 14/56). HFBackend.free_vram()
+        already existed for this but was never actually called anywhere in
+        the project (see build_prefix_pool's comment in
+        candidate_b_pipeline.py, which fixes the between-trajectory case).
+        This is the same fix applied at the lowest level, so every one of
+        this class's three model.generate() call sites gets it, including
+        WITHIN a single trajectory's dozens of scoring calls, not just
+        between trajectories -- needed for the audit scripts' longer
+        unattended runs where nobody is watching to restart a crashed one.
+        """
+        self.torch.cuda.empty_cache()
+        try:
+            return generate_call()
+        except RuntimeError as e:
+            if "out of memory" not in str(e).lower():
+                raise
+            print(f"[backend] CUDA OOM caught ({e}); freeing cache and retrying once")
+            self.torch.cuda.empty_cache()
+            return generate_call()
+
     def _generate_from_ids(self, input_ids, max_new_tokens: int) -> str:
         with self.torch.no_grad():
-            output_ids = self.model.generate(
+            output_ids = self._generate_retrying_oom(lambda: self.model.generate(
                 input_ids,
                 attention_mask=self.torch.ones_like(input_ids),
                 max_new_tokens=max_new_tokens,
@@ -227,7 +262,7 @@ class HFBackend:
                 temperature=self.temperature,
                 pad_token_id=self.tokenizer.eos_token_id,
                 use_cache=True,
-            )
+            ))
         new_tokens = output_ids[0][input_ids.shape[1] :]
         return self.tokenizer.decode(new_tokens, skip_special_tokens=True)
 
@@ -265,6 +300,80 @@ class HFBackend:
         input_ids = self.tokenizer(prefix_text, return_tensors="pt").input_ids.to(self.model.device)
         return self._generate_from_ids(input_ids, max_new_tokens)
 
+    def continue_generate_with_telemetry(
+        self, prefix_text: str, max_new_tokens: int, probe_step: int = 25,
+    ) -> "BranchTelemetry":
+        """Like continue_generate(), but ALSO records what continue_generate()
+        throws away: whether generation ended by EOS or by hitting
+        max_new_tokens (finish_reason), how many tokens were actually
+        generated, and the coarse token index at which a \\boxed{...}
+        FIRST closes (or None if it never does within budget).
+
+        Exists specifically for REVISION_PLAN.md Tier 1.3 (the censoring
+        audit): d1_prob1 and d2_prob1's "decisiveness gap" could be a real
+        effect, or it could be that a less-advanced prefix simply needs
+        more than MAX_NEW_TOKENS_BRANCH=1500 tokens to reach \\boxed{} and
+        an unclosed box at the cutoff is silently counted as "trailed off
+        empty." continue_generate() alone cannot distinguish these because
+        it discards finish_reason and only returns the completion text.
+
+        boxed_close_token_index is computed by decoding the generated
+        tokens in cumulative chunks of `probe_step` tokens and checking
+        early_stop.parsers.extract_boxed() after each chunk -- gives
+        token-level resolution of `probe_step`, not exact, which is
+        enough to tell "closes at ~200 tokens" from "closes at ~2800
+        tokens, past the original 1500 cutoff" without re-running
+        generation once per candidate cutoff.
+
+        Also exists for Tier 1.2 (L1-vs-L2 contrast): the caller can use
+        the returned raw_text/prefix_text pair to reconstruct exactly what
+        was branched from, since prefix text is otherwise not persisted
+        (see extract_hidden_state's docstring for the same caveat).
+
+        NOT scored (no output_scores) -- safe at full branch length
+        (1500-3000 tokens), unlike forced_extract_with_scores which is
+        deliberately kept short for that reason (see its docstring).
+        """
+        from early_stop.parsers import extract_boxed
+
+        input_ids = self.tokenizer(prefix_text, return_tensors="pt").input_ids.to(self.model.device)
+        with self.torch.no_grad():
+            out = self._generate_retrying_oom(lambda: self.model.generate(
+                input_ids,
+                attention_mask=self.torch.ones_like(input_ids),
+                max_new_tokens=max_new_tokens,
+                do_sample=True,
+                temperature=self.temperature,
+                pad_token_id=self.tokenizer.eos_token_id,
+                use_cache=True,
+                return_dict_in_generate=True,
+            ))
+        new_tokens = out.sequences[0][input_ids.shape[1]:]
+        n_generated = int(new_tokens.shape[0])
+        eos_id = int(self.tokenizer.eos_token_id)
+        finish_reason = "eos" if (n_generated < max_new_tokens or eos_id in new_tokens.tolist()) else "length"
+        completion = self.tokenizer.decode(new_tokens, skip_special_tokens=True)
+
+        boxed_close_token_index = None
+        k = probe_step
+        while k < n_generated:
+            partial = self.tokenizer.decode(new_tokens[:k], skip_special_tokens=True)
+            if extract_boxed(partial) is not None:
+                boxed_close_token_index = k
+                break
+            k += probe_step
+        if boxed_close_token_index is None and extract_boxed(completion) is not None:
+            boxed_close_token_index = n_generated
+
+        return BranchTelemetry(
+            prefix_text=prefix_text,
+            completion_text=completion,
+            full_text=prefix_text + completion,
+            finish_reason=finish_reason,
+            n_generated_tokens=n_generated,
+            boxed_close_token_index=boxed_close_token_index,
+        )
+
     def free_vram(self) -> None:
         """Call between problems if fragmentation becomes an issue."""
         if self.gpu.available:
@@ -296,7 +405,7 @@ class HFBackend:
         """
         input_ids = self.tokenizer(prefix_text, return_tensors="pt").input_ids.to(self.model.device)
         with self.torch.no_grad():
-            out = self.model.generate(
+            out = self._generate_retrying_oom(lambda: self.model.generate(
                 input_ids,
                 attention_mask=self.torch.ones_like(input_ids),
                 max_new_tokens=max_new_tokens,
@@ -306,7 +415,7 @@ class HFBackend:
                 use_cache=True,
                 output_scores=True,
                 return_dict_in_generate=True,
-            )
+            ))
         new_tokens = out.sequences[0][input_ids.shape[1]:]
         completion = self.tokenizer.decode(new_tokens, skip_special_tokens=True)
 
@@ -371,6 +480,23 @@ class ScoredCompletion:
     entropy_bits: float
 
 
+@dataclass(frozen=True)
+class BranchTelemetry:
+    """Result of continue_generate_with_telemetry() -- a natural
+    continuation plus the generation metadata needed to tell "the model
+    chose to stop without a boxed answer" apart from "the model ran out
+    of token budget before reaching one." See that method's docstring
+    (REVISION_PLAN.md Tier 1.3) for why continue_generate() alone can't
+    make this distinction."""
+
+    prefix_text: str  # what was branched from -- not persisted elsewhere, see extract_hidden_state's caveat
+    completion_text: str
+    full_text: str  # prefix_text + completion_text
+    finish_reason: str  # "eos" (model stopped on its own) or "length" (hit max_new_tokens)
+    n_generated_tokens: int
+    boxed_close_token_index: int | None  # coarse (± probe_step tokens); None if never closes within budget
+
+
 class MockScoredBackend:
     """Deterministic stand-in for HFBackend.forced_extract_with_scores(),
     for testing Candidate B's orchestration pipeline without a GPU. Mirrors
@@ -416,6 +542,34 @@ class MockScoredBackend:
             if key in prefix_text:
                 return val
         return self.continue_default
+
+    def continue_generate_with_telemetry(
+        self, prefix_text: str, max_new_tokens: int, probe_step: int = 25,
+    ) -> "BranchTelemetry":
+        """Deterministic stand-in for HFBackend.continue_generate_with_telemetry(),
+        reusing continue_canned/continue_default for the completion text.
+        finish_reason and n_generated_tokens are derived from a whitespace
+        token count against max_new_tokens (a crude stand-in -- real token
+        counts come from the tokenizer, this mock has none); good enough to
+        test branch_naturally_with_telemetry()'s plumbing without a GPU."""
+        completion = self.continue_default
+        for key, val in self.continue_canned.items():
+            if key in prefix_text:
+                completion = val
+                break
+        self.calls.append(prefix_text)
+        n_tokens = min(len(completion.split()), max_new_tokens)
+        finish_reason = "eos" if n_tokens < max_new_tokens else "length"
+        from early_stop.parsers import extract_boxed
+        boxed_close_token_index = n_tokens if extract_boxed(completion) is not None else None
+        return BranchTelemetry(
+            prefix_text=prefix_text,
+            completion_text=completion,
+            full_text=prefix_text + completion,
+            finish_reason=finish_reason,
+            n_generated_tokens=n_tokens,
+            boxed_close_token_index=boxed_close_token_index,
+        )
 
     def extract_hidden_state(self, prefix_text: str, layer: int = -1) -> list[float]:
         """Deterministic stand-in for HFBackend.extract_hidden_state(), for

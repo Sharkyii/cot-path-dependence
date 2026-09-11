@@ -43,59 +43,88 @@ round2_files = sorted(glob.glob(str(REPO_ROOT / "results" / "candidate_b_fullpil
 pairs = []
 for f in round2_files:
     for e in json.load(open(f)):
-        pairs.append((e["state_distance"], e["observed_pdi"]))
+        excess = e["observed_pdi"] - e["null_mean"]
+        pairs.append((e["state_distance"], excess))
 
 x = np.array([p[0] for p in pairs])
 y = np.array([p[1] for p in pairs])
 n = len(x)
 
-res = stats.linregress(x, y)
-slope, intercept = res.slope, res.intercept
+# 2026-09-12 revision (REVISION_PLAN.md Tier 2): plot EXCESS PDI (observed
+# minus that pair's own permutation null mean), not raw PDI. Raw PDI's
+# plug-in estimator is biased upward at N=10 for any non-unanimous pair,
+# so it is not comparable to zero -- excess PDI is. This is also what
+# main.tex's corrected regression (cluster-robust SEs) is fit on.
+X_aug = np.column_stack([np.ones(n), x])
+beta, *_ = np.linalg.lstsq(X_aug, y, rcond=None)
+intercept, slope = beta[0], beta[1]
+residuals = y - X_aug @ beta
 
-xbar = x.mean()
-Sxx = np.sum((x - xbar) ** 2)
-resid = y - (intercept + slope * x)
-dof = n - 2
-s_resid = np.sqrt(np.sum(resid ** 2) / dof)
-tcrit = stats.t.ppf(0.975, dof)
+# HC1 heteroskedasticity-robust (cluster-robust in spirit) SEs, matching
+# scripts/final_analysis.py's regression_with_cluster_robust_se().
+k = 2
+XX_inv = np.linalg.inv(X_aug.T @ X_aug)
+meat = np.zeros((k, k))
+for i in range(n):
+    meat += residuals[i] ** 2 * np.outer(X_aug[i], X_aug[i])
+meat *= n / (n - k)
+var_matrix = XX_inv @ meat @ XX_inv
+se = np.sqrt(np.diag(var_matrix))
+tcrit = stats.t.ppf(0.975, n - k)
+intercept_se, slope_se = se[0], se[1]
+intercept_p = 2 * (1 - stats.t.cdf(abs(intercept / intercept_se), n - k))
+slope_p = 2 * (1 - stats.t.cdf(abs(slope / slope_se), n - k))
 
 x_line = np.linspace(0, x.max() * 1.05, 200)
 y_line = intercept + slope * x_line
-se_line = s_resid * np.sqrt(1.0 / n + (x_line - xbar) ** 2 / Sxx)
+# Approximate mean-fit CI band using the same HC1 variance at each x
+# (var(y_hat) = [1, x] V [1, x]^T), good enough for the visual band.
+se_line = np.array([
+    np.sqrt(np.array([1, xv]) @ var_matrix @ np.array([1, xv]))
+    for xv in x_line
+])
 ci_lo = y_line - tcrit * se_line
 ci_hi = y_line + tcrit * se_line
 
-slope_ci_lo = slope - tcrit * res.stderr
-slope_ci_hi = slope + tcrit * res.stderr
+# The direct-measurement points: pairs at exactly d=0 (matched on
+# confidence and entropy too, not by design). Marked distinctly per the
+# corrected fig:contreg caption in main.tex -- these are what the
+# intercept is supposed to estimate, and unlike the fitted line, they
+# are observed, not extrapolated.
+zero_d_mask = x < 1e-9
 
 fig, ax = plt.subplots(figsize=(5.5, 4.2))
-ax.scatter(x, y, s=28, color=BLUE, alpha=0.75, edgecolor="white", linewidth=0.5, zorder=3, label="Matched pairs")
+ax.scatter(x[~zero_d_mask], y[~zero_d_mask], s=28, color=BLUE, alpha=0.75,
+           edgecolor="white", linewidth=0.5, zorder=3, label="Matched pairs ($d>0$)")
+ax.scatter(x[zero_d_mask], y[zero_d_mask], s=60, color=TEAL, alpha=0.9, marker="D",
+           edgecolor="black", linewidth=0.6, zorder=4,
+           label=f"Direct measurement at $d=0$ ($n={zero_d_mask.sum()}$, all zero)")
 ax.plot(x_line, y_line, color=ORANGE, linewidth=1.8, zorder=2, label="Fitted regression")
 ax.fill_between(x_line, ci_lo, ci_hi, color=ORANGE, alpha=0.18, zorder=1, label="95% CI (mean fit)")
 ax.axhline(0, color=GREY, linewidth=0.6, linestyle=":", zorder=0)
 
 ax.set_xlabel(r"State-space distance $d(\phi_A, \phi_B)$")
-ax.set_ylabel("Path Dependence Index (PDI)")
-ax.set_ylim(0, 1)
+ax.set_ylabel("Excess Path Dependence Index (observed $-$ null mean)")
 ax.set_xlim(left=0)
 
 stat_text = (
     f"$n = {n}$\n"
-    f"$\\hat\\beta = {slope:.4f}$\n"
-    f"$p = {res.pvalue:.2f}$\n"
-    f"95% CI $[{slope_ci_lo:.3f}, {slope_ci_hi:.3f}]$"
+    f"intercept $= {intercept:.4f}$, $p = {intercept_p:.2f}$\n"
+    f"slope $= {slope:.4f}$, $p = {slope_p:.2f}$\n"
+    f"$d{{=}}0$ pairs: {zero_d_mask.sum()} of {n}, all excess $=0$"
 )
 ax.text(
     0.97, 0.95, stat_text, transform=ax.transAxes,
     ha="right", va="top", fontsize=8.5,
     bbox=dict(boxstyle="round,pad=0.4", facecolor="white", edgecolor=GREY, linewidth=0.6, alpha=0.9),
 )
-ax.legend(loc="upper left", fontsize=8, frameon=False)
+ax.legend(loc="lower right", fontsize=7.5, frameon=True, framealpha=0.92,
+          edgecolor=GREY, facecolor="white")
 fig.tight_layout()
 fig.savefig(OUT_DIR / "fig_continuous_regression.pdf")
 plt.close(fig)
-print(f"Wrote fig_continuous_regression.pdf: n={n}, slope={slope:.4f}, p={res.pvalue:.4f}, "
-      f"95% CI=[{slope_ci_lo:.4f}, {slope_ci_hi:.4f}]")
+print(f"Wrote fig_continuous_regression.pdf: n={n}, intercept={intercept:.4f} (p={intercept_p:.4f}), "
+      f"slope={slope:.4f} (p={slope_p:.4f}), zero-d pairs={zero_d_mask.sum()}")
 
 # ---------------------------------------------------------------------
 # Figure 2: SG-ES vs baselines (paper Figure 5, §4.6)

@@ -6,6 +6,7 @@ from early_stop.candidate_b_pipeline import (
     extract_candidate_prefixes_text,
     generate_diverse_trajectories,
     branch_naturally,
+    branch_naturally_with_telemetry,
 )
 from early_stop.path_dependence import find_matched_pairs, pair_permutation_test
 
@@ -155,6 +156,34 @@ def test_branch_naturally_does_not_use_forced_suffix():
     branches = branch_naturally(NoScoringBackend(), "prompt", "prefix", n=5, max_new_tokens=100)
     assert branches.n_total == 5
     assert branches.distribution() == {"3": 1.0}
+
+
+def test_branch_naturally_with_telemetry_matches_branch_naturally_outcomes():
+    # Same BranchSet-shaped output as branch_naturally() -- so
+    # pair_permutation_test() works unchanged on the returned branches.
+    backend = MockScoredBackend()
+    backend.continue_default = " the answer is \\boxed{7}."
+    branches, telemetry = branch_naturally_with_telemetry(
+        backend, "solve for x", "step 1 reasoning", n=6, max_new_tokens=500,
+    )
+    assert branches.n_total == 6
+    assert branches.distribution() == {"7": 1.0}
+    assert len(telemetry) == 6
+    for t in telemetry:
+        assert t["answer"] == "7"
+        assert t["finish_reason"] in ("eos", "length")
+        assert t["boxed_close_token_index"] is not None  # closes -- box is present
+
+
+def test_branch_naturally_with_telemetry_flags_unclosed_box_as_no_close_index():
+    backend = MockScoredBackend()
+    backend.continue_default = " let me think about this further and \\boxed{unclosed"
+    _branches, telemetry = branch_naturally_with_telemetry(
+        backend, "prompt", "prefix", n=3, max_new_tokens=50,
+    )
+    for t in telemetry:
+        assert t["boxed_close_token_index"] is None
+        assert t["answer"] is None  # unclosed box never parses as a genuine answer
 
 
 def test_full_mechanical_pipeline_two_trajectories_find_a_match_and_branch():

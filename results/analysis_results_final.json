@@ -1,0 +1,3199 @@
+{
+  "timestamp": "2026-09-12",
+  "n_pairs": 66,
+  "n_problems": 17,
+  "excess_pdi": [
+    {
+      "problem_id": "d1_prob0",
+      "observed_pdi": 0.0,
+      "null_mean": 0.0,
+      "excess_pdi": 0.0,
+      "track": "round1",
+      "n": 40,
+      "state_distance": null
+    },
+    {
+      "problem_id": "d1_prob1",
+      "observed_pdi": 0.0022636664497030375,
+      "null_mean": 0.00964288475070466,
+      "excess_pdi": -0.007379218301001623,
+      "track": "round1",
+      "n": 40,
+      "state_distance": null
+    },
+    {
+      "problem_id": "d1_prob1",
+      "observed_pdi": 0.06100276392885592,
+      "null_mean": 0.009084720302171558,
+      "excess_pdi": 0.05191804362668436,
+      "track": "round1",
+      "n": 40,
+      "state_distance": null
+    },
+    {
+      "problem_id": "d1_prob3",
+      "observed_pdi": 0.12281454915819005,
+      "null_mean": 0.009827415798859011,
+      "excess_pdi": 0.11298713335933104,
+      "track": "round1",
+      "n": 40,
+      "state_distance": null
+    },
+    {
+      "problem_id": "d1_prob3",
+      "observed_pdi": 0.0,
+      "null_mean": 0.0,
+      "excess_pdi": 0.0,
+      "track": "round1",
+      "n": 40,
+      "state_distance": null
+    },
+    {
+      "problem_id": "d1_prob3",
+      "observed_pdi": 0.0,
+      "null_mean": 0.0,
+      "excess_pdi": 0.0,
+      "track": "round1",
+      "n": 40,
+      "state_distance": null
+    },
+    {
+      "problem_id": "d1_prob5",
+      "observed_pdi": 0.0,
+      "null_mean": 0.0,
+      "excess_pdi": 0.0,
+      "track": "round1",
+      "n": 40,
+      "state_distance": null
+    },
+    {
+      "problem_id": "d2_prob0",
+      "observed_pdi": 0.0,
+      "null_mean": 0.0,
+      "excess_pdi": 0.0,
+      "track": "round1",
+      "n": 40,
+      "state_distance": null
+    },
+    {
+      "problem_id": "d2_prob1",
+      "observed_pdi": 0.37289883921907563,
+      "null_mean": 0.02113124478336624,
+      "excess_pdi": 0.3517675944357094,
+      "track": "round1",
+      "n": 40,
+      "state_distance": null
+    },
+    {
+      "problem_id": "d2_prob1",
+      "observed_pdi": 0.06550784501721567,
+      "null_mean": 0.023756052679224388,
+      "excess_pdi": 0.041751792337991284,
+      "track": "round1",
+      "n": 40,
+      "state_distance": null
+    },
+    {
+      "problem_id": "d2_prob2",
+      "observed_pdi": 0.0,
+      "null_mean": 0.0,
+      "excess_pdi": 0.0,
+      "track": "round1",
+      "n": 40,
+      "state_distance": null
+    },
+    {
+      "problem_id": "d2_prob2",
+      "observed_pdi": 0.0,
+      "null_mean": 0.0,
+      "excess_pdi": 0.0,
+      "track": "round1",
+      "n": 40,
+      "state_distance": null
+    },
+    {
+      "problem_id": "d2_prob2",
+      "observed_pdi": 0.0,
+      "null_mean": 0.0,
+      "excess_pdi": 0.0,
+      "track": "round1",
+      "n": 40,
+      "state_distance": null
+    },
+    {
+      "problem_id": "d2_prob4",
+      "observed_pdi": 0.0,
+      "null_mean": 0.0,
+      "excess_pdi": 0.0,
+      "track": "round1",
+      "n": 40,
+      "state_distance": null
+    },
+    {
+      "problem_id": "d3_prob0",
+      "observed_pdi": 0.0,
+      "null_mean": 0.0,
+      "excess_pdi": 0.0,
+      "track": "round1",
+      "n": 40,
+      "state_distance": null
+    },
+    {
+      "problem_id": "d3_prob0",
+      "observed_pdi": 0.0,
+      "null_mean": 0.0,
+      "excess_pdi": 0.0,
+      "track": "round1",
+      "n": 40,
+      "state_distance": null
+    },
+    {
+      "problem_id": "d3_prob1",
+      "observed_pdi": 0.0,
+      "null_mean": 0.0,
+      "excess_pdi": 0.0,
+      "track": "round1",
+      "n": 40,
+      "state_distance": null
+    },
+    {
+      "problem_id": "d3_prob3",
+      "observed_pdi": 0.0,
+      "null_mean": 0.0,
+      "excess_pdi": 0.0,
+      "track": "round1",
+      "n": 40,
+      "state_distance": null
+    },
+    {
+      "problem_id": "d3_prob2",
+      "observed_pdi": 0.0,
+      "null_mean": 0.0,
+      "excess_pdi": 0.0,
+      "track": "round1",
+      "n": 40,
+      "state_distance": null
+    },
+    {
+      "problem_id": "d3_prob2",
+      "observed_pdi": 0.0,
+      "null_mean": 0.0,
+      "excess_pdi": 0.0,
+      "track": "round1",
+      "n": 40,
+      "state_distance": null
+    },
+    {
+      "problem_id": "d3_prob4",
+      "observed_pdi": 0.0,
+      "null_mean": 0.0,
+      "excess_pdi": 0.0,
+      "track": "round1",
+      "n": 40,
+      "state_distance": null
+    },
+    {
+      "problem_id": "d1_prob0",
+      "observed_pdi": 0.0,
+      "null_mean": 0.0,
+      "excess_pdi": 0.0,
+      "track": "round2",
+      "n": 10,
+      "state_distance": 0.568231829222799
+    },
+    {
+      "problem_id": "d1_prob0",
+      "observed_pdi": 0.0,
+      "null_mean": 0.0,
+      "excess_pdi": 0.0,
+      "track": "round2",
+      "n": 10,
+      "state_distance": 1.1298497723101142
+    },
+    {
+      "problem_id": "d1_prob1",
+      "observed_pdi": 0.0,
+      "null_mean": 0.0,
+      "excess_pdi": 0.0,
+      "track": "round2",
+      "n": 10,
+      "state_distance": 0.0
+    },
+    {
+      "problem_id": "d1_prob1",
+      "observed_pdi": 0.0,
+      "null_mean": 0.0,
+      "excess_pdi": 0.0,
+      "track": "round2",
+      "n": 10,
+      "state_distance": 0.6261182381625672
+    },
+    {
+      "problem_id": "d1_prob0",
+      "observed_pdi": 0.0,
+      "null_mean": 0.0,
+      "excess_pdi": 0.0,
+      "track": "round2",
+      "n": 10,
+      "state_distance": 1.5181665555924957
+    },
+    {
+      "problem_id": "d1_prob3",
+      "observed_pdi": 0.0,
+      "null_mean": 0.0,
+      "excess_pdi": 0.0,
+      "track": "round2",
+      "n": 10,
+      "state_distance": 0.634033469592295
+    },
+    {
+      "problem_id": "d1_prob3",
+      "observed_pdi": 0.0,
+      "null_mean": 0.0,
+      "excess_pdi": 0.0,
+      "track": "round2",
+      "n": 10,
+      "state_distance": 1.8027996604014553
+    },
+    {
+      "problem_id": "d1_prob3",
+      "observed_pdi": 0.0,
+      "null_mean": 0.0,
+      "excess_pdi": 0.0,
+      "track": "round2",
+      "n": 10,
+      "state_distance": 0.0
+    },
+    {
+      "problem_id": "d1_prob3",
+      "observed_pdi": 0.0,
+      "null_mean": 0.0,
+      "excess_pdi": 0.0,
+      "track": "round2",
+      "n": 10,
+      "state_distance": 1.0894010899232578
+    },
+    {
+      "problem_id": "d1_prob3",
+      "observed_pdi": 0.0,
+      "null_mean": 0.0,
+      "excess_pdi": 0.0,
+      "track": "round2",
+      "n": 10,
+      "state_distance": 1.0417062178045995
+    },
+    {
+      "problem_id": "d1_prob5",
+      "observed_pdi": 0.0,
+      "null_mean": 0.0,
+      "excess_pdi": 0.0,
+      "track": "round2",
+      "n": 10,
+      "state_distance": 0.8060341364638431
+    },
+    {
+      "problem_id": "d1_prob5",
+      "observed_pdi": 0.0,
+      "null_mean": 0.0,
+      "excess_pdi": 0.0,
+      "track": "round2",
+      "n": 10,
+      "state_distance": 1.4939280100092327
+    },
+    {
+      "problem_id": "d1_prob5",
+      "observed_pdi": 0.0,
+      "null_mean": 0.0,
+      "excess_pdi": 0.0,
+      "track": "round2",
+      "n": 10,
+      "state_distance": 0.0
+    },
+    {
+      "problem_id": "d1_prob5",
+      "observed_pdi": 0.0,
+      "null_mean": 0.0,
+      "excess_pdi": 0.0,
+      "track": "round2",
+      "n": 10,
+      "state_distance": 1.0227707299562552
+    },
+    {
+      "problem_id": "d1_prob4",
+      "observed_pdi": 0.0,
+      "null_mean": 0.0,
+      "excess_pdi": 0.0,
+      "track": "round2",
+      "n": 10,
+      "state_distance": 1.894627470502563
+    },
+    {
+      "problem_id": "d2_prob1",
+      "observed_pdi": 0.0,
+      "null_mean": 0.0,
+      "excess_pdi": 0.0,
+      "track": "round2",
+      "n": 10,
+      "state_distance": 0.6861434146744941
+    },
+    {
+      "problem_id": "d2_prob1",
+      "observed_pdi": 0.0,
+      "null_mean": 0.0,
+      "excess_pdi": 0.0,
+      "track": "round2",
+      "n": 10,
+      "state_distance": 1.0081512854060264
+    },
+    {
+      "problem_id": "d2_prob0",
+      "observed_pdi": 0.0,
+      "null_mean": 0.0,
+      "excess_pdi": 0.0,
+      "track": "round2",
+      "n": 10,
+      "state_distance": 0.0
+    },
+    {
+      "problem_id": "d2_prob1",
+      "observed_pdi": 0.0,
+      "null_mean": 0.0,
+      "excess_pdi": 0.0,
+      "track": "round2",
+      "n": 10,
+      "state_distance": 0.3539312405933863
+    },
+    {
+      "problem_id": "d2_prob1",
+      "observed_pdi": 0.1,
+      "null_mean": 0.10389128410754324,
+      "excess_pdi": -0.003891284107543233,
+      "track": "round2",
+      "n": 10,
+      "state_distance": 0.731552344296843
+    },
+    {
+      "problem_id": "d2_prob2",
+      "observed_pdi": 0.0,
+      "null_mean": 0.0,
+      "excess_pdi": 0.0,
+      "track": "round2",
+      "n": 10,
+      "state_distance": 0.6078287096366743
+    },
+    {
+      "problem_id": "d2_prob3",
+      "observed_pdi": 0.0,
+      "null_mean": 0.0,
+      "excess_pdi": 0.0,
+      "track": "round2",
+      "n": 10,
+      "state_distance": 0.9432616098141526
+    },
+    {
+      "problem_id": "d2_prob2",
+      "observed_pdi": 0.0,
+      "null_mean": 0.0,
+      "excess_pdi": 0.0,
+      "track": "round2",
+      "n": 10,
+      "state_distance": 0.0
+    },
+    {
+      "problem_id": "d2_prob3",
+      "observed_pdi": 0.0,
+      "null_mean": 0.0,
+      "excess_pdi": 0.0,
+      "track": "round2",
+      "n": 10,
+      "state_distance": 0.5202406005166795
+    },
+    {
+      "problem_id": "d2_prob2",
+      "observed_pdi": 0.0,
+      "null_mean": 0.0,
+      "excess_pdi": 0.0,
+      "track": "round2",
+      "n": 10,
+      "state_distance": 1.0682934926823873
+    },
+    {
+      "problem_id": "d2_prob5",
+      "observed_pdi": 0.0,
+      "null_mean": 0.0,
+      "excess_pdi": 0.0,
+      "track": "round2",
+      "n": 10,
+      "state_distance": 0.7418690595933548
+    },
+    {
+      "problem_id": "d2_prob4",
+      "observed_pdi": 0.0,
+      "null_mean": 0.0,
+      "excess_pdi": 0.0,
+      "track": "round2",
+      "n": 10,
+      "state_distance": 1.3348214205423534
+    },
+    {
+      "problem_id": "d2_prob4",
+      "observed_pdi": 0.0,
+      "null_mean": 0.0,
+      "excess_pdi": 0.0,
+      "track": "round2",
+      "n": 10,
+      "state_distance": 0.0
+    },
+    {
+      "problem_id": "d2_prob5",
+      "observed_pdi": 0.0,
+      "null_mean": 0.0,
+      "excess_pdi": 0.0,
+      "track": "round2",
+      "n": 10,
+      "state_distance": 0.6459699037896534
+    },
+    {
+      "problem_id": "d2_prob5",
+      "observed_pdi": 0.0,
+      "null_mean": 0.0,
+      "excess_pdi": 0.0,
+      "track": "round2",
+      "n": 10,
+      "state_distance": 1.1355447611865854
+    },
+    {
+      "problem_id": "d3_prob0",
+      "observed_pdi": 0.0,
+      "null_mean": 0.0,
+      "excess_pdi": 0.0,
+      "track": "round2",
+      "n": 10,
+      "state_distance": 0.7411133692893512
+    },
+    {
+      "problem_id": "d3_prob1",
+      "observed_pdi": 0.0,
+      "null_mean": 0.0,
+      "excess_pdi": 0.0,
+      "track": "round2",
+      "n": 10,
+      "state_distance": 1.5649845538789262
+    },
+    {
+      "problem_id": "d3_prob0",
+      "observed_pdi": 0.0,
+      "null_mean": 0.0,
+      "excess_pdi": 0.0,
+      "track": "round2",
+      "n": 10,
+      "state_distance": 0.0
+    },
+    {
+      "problem_id": "d3_prob0",
+      "observed_pdi": 0.0,
+      "null_mean": 0.0,
+      "excess_pdi": 0.0,
+      "track": "round2",
+      "n": 10,
+      "state_distance": 1.142822266666794
+    },
+    {
+      "problem_id": "d3_prob0",
+      "observed_pdi": 0.0,
+      "null_mean": 0.0,
+      "excess_pdi": 0.0,
+      "track": "round2",
+      "n": 10,
+      "state_distance": 0.9985587764282253
+    },
+    {
+      "problem_id": "d3_prob2",
+      "observed_pdi": 0.0,
+      "null_mean": 0.0,
+      "excess_pdi": 0.0,
+      "track": "round2",
+      "n": 10,
+      "state_distance": 1.4061471651205735
+    },
+    {
+      "problem_id": "d3_prob2",
+      "observed_pdi": 0.0,
+      "null_mean": 0.0,
+      "excess_pdi": 0.0,
+      "track": "round2",
+      "n": 10,
+      "state_distance": 2.3163787444365895
+    },
+    {
+      "problem_id": "d3_prob3",
+      "observed_pdi": 0.0,
+      "null_mean": 0.0,
+      "excess_pdi": 0.0,
+      "track": "round2",
+      "n": 10,
+      "state_distance": 1.0263756906043888
+    },
+    {
+      "problem_id": "d3_prob2",
+      "observed_pdi": 0.0,
+      "null_mean": 0.0,
+      "excess_pdi": 0.0,
+      "track": "round2",
+      "n": 10,
+      "state_distance": 1.3456603741794928
+    },
+    {
+      "problem_id": "d3_prob2",
+      "observed_pdi": 0.0,
+      "null_mean": 0.0,
+      "excess_pdi": 0.0,
+      "track": "round2",
+      "n": 10,
+      "state_distance": 1.8377764256915288
+    },
+    {
+      "problem_id": "d3_prob5",
+      "observed_pdi": 0.19999999999999998,
+      "null_mean": 0.20793454802341432,
+      "excess_pdi": -0.00793454802341434,
+      "track": "round2",
+      "n": 10,
+      "state_distance": 0.5264226925217851
+    },
+    {
+      "problem_id": "d3_prob5",
+      "observed_pdi": 0.051899160321315606,
+      "null_mean": 0.05189916032131559,
+      "excess_pdi": 1.3877787807814457e-17,
+      "track": "round2",
+      "n": 10,
+      "state_distance": 0.866589783414567
+    },
+    {
+      "problem_id": "d3_prob4",
+      "observed_pdi": 0.0,
+      "null_mean": 0.0,
+      "excess_pdi": 0.0,
+      "track": "round2",
+      "n": 10,
+      "state_distance": 0.5631028468566275
+    },
+    {
+      "problem_id": "d3_prob5",
+      "observed_pdi": 0.10803154614560004,
+      "null_mean": 0.05207120524217922,
+      "excess_pdi": 0.05596034090342082,
+      "track": "round2",
+      "n": 10,
+      "state_distance": 0.5486887832680755
+    },
+    {
+      "problem_id": "d3_prob5",
+      "observed_pdi": 0.16919485510105411,
+      "null_mean": 0.15592135992829548,
+      "excess_pdi": 0.013273495172758637,
+      "track": "round2",
+      "n": 10,
+      "state_distance": 0.866589783414567
+    }
+  ],
+  "bootstrap_problem_level": {
+    "t_obs": 0.006207113948562035,
+    "mean_null": 0.006253513072077575,
+    "std_null": 0.002923956202166111,
+    "ci_lower": 0.0011134706331420684,
+    "ci_upper": 0.01055209371255546,
+    "n_problems": 17,
+    "n_replicas": 5000
+  },
+  "regression": {
+    "intercept": 0.002206552311724988,
+    "intercept_se": 0.002475583178216898,
+    "intercept_t": 0.8913262665301813,
+    "intercept_p": 0.37771469306520644,
+    "slope": -0.0010697295407085582,
+    "slope_se": 0.0013788563743752094,
+    "slope_t": -0.7758092580115725,
+    "slope_p": 0.44210783451641533,
+    "r_squared": 0.004769420219150944,
+    "n_pairs": 45,
+    "state_distance_range": [
+      0.0,
+      2.3163787444365895
+    ],
+    "n_pairs_at_d_zero": 7,
+    "regression_pairs": [
+      {
+        "problem_id": "d1_prob0",
+        "a": [
+          "\\sqrt{51}",
+          "\\sqrt{51}",
+          "\\sqrt{51}",
+          "\\sqrt{51}",
+          "\\sqrt{51}",
+          "\\sqrt{51}",
+          "\\sqrt{51}",
+          "\\sqrt{51}",
+          "\\sqrt{51}",
+          "\\sqrt{51}"
+        ],
+        "b": [
+          "\\sqrt{51}",
+          "\\sqrt{51}",
+          "\\sqrt{51}",
+          "\\sqrt{51}",
+          "\\sqrt{51}",
+          "\\sqrt{51}",
+          "\\sqrt{51}",
+          "\\sqrt{51}",
+          "\\sqrt{51}",
+          "\\sqrt{51}"
+        ],
+        "observed_pdi": 0.0,
+        "null_mean": 0.0,
+        "state_distance": 0.568231829222799,
+        "side_a_state": {
+          "answer": "\\sqrt{51}",
+          "confidence": 0.6829252243041992,
+          "entropy": 1.484686255455017,
+          "normalized_position": 0.8064516129032258
+        },
+        "side_b_state": {
+          "answer": "\\sqrt{51}",
+          "confidence": 0.264595627784729,
+          "entropy": 1.8692480325698853,
+          "normalized_position": 0.6666666666666666
+        },
+        "n_a": 10,
+        "n_b": 10,
+        "track": "round2",
+        "file": "round2_level1_0-2.json"
+      },
+      {
+        "problem_id": "d1_prob0",
+        "a": [
+          "\\sqrt{51}",
+          "\\sqrt{51}",
+          "\\sqrt{51}",
+          "\\sqrt{51}",
+          "\\sqrt{51}",
+          "\\sqrt{51}",
+          "\\sqrt{51}",
+          "\\sqrt{51}",
+          "\\sqrt{51}",
+          "\\sqrt{51}"
+        ],
+        "b": [
+          "\\sqrt{51}",
+          "\\sqrt{51}",
+          "\\sqrt{51}",
+          "\\sqrt{51}",
+          "\\sqrt{51}",
+          "\\sqrt{51}",
+          "\\sqrt{51}",
+          "\\sqrt{51}",
+          "\\sqrt{51}",
+          "\\sqrt{51}"
+        ],
+        "observed_pdi": 0.0,
+        "null_mean": 0.0,
+        "state_distance": 1.1298497723101142,
+        "side_a_state": {
+          "answer": "\\sqrt{51}",
+          "confidence": 1.0,
+          "entropy": -0.0,
+          "normalized_position": 0.8709677419354839
+        },
+        "side_b_state": {
+          "answer": "\\sqrt{51}",
+          "confidence": 0.314050555229187,
+          "entropy": 0.8977938890457153,
+          "normalized_position": 0.875
+        },
+        "n_a": 10,
+        "n_b": 10,
+        "track": "round2",
+        "file": "round2_level1_0-2.json"
+      },
+      {
+        "problem_id": "d1_prob1",
+        "a": [
+          "-50",
+          "-50",
+          "-50",
+          "-50",
+          "-50",
+          "-50",
+          "-50",
+          "-50",
+          "-50",
+          "-50"
+        ],
+        "b": [
+          "-50",
+          "-50",
+          "-50",
+          "-50",
+          "-50",
+          "-50",
+          "-50",
+          "-50",
+          "-50",
+          "-50"
+        ],
+        "observed_pdi": 0.0,
+        "null_mean": 0.0,
+        "state_distance": 0.0,
+        "side_a_state": {
+          "answer": "-50",
+          "confidence": 1.0,
+          "entropy": -0.0,
+          "normalized_position": 0.8571428571428571
+        },
+        "side_b_state": {
+          "answer": "-50",
+          "confidence": 1.0,
+          "entropy": -0.0,
+          "normalized_position": 1.0
+        },
+        "n_a": 10,
+        "n_b": 10,
+        "track": "round2",
+        "file": "round2_level1_0-2.json"
+      },
+      {
+        "problem_id": "d1_prob1",
+        "a": [
+          "-50",
+          "-50",
+          "-50",
+          "-50",
+          "-50",
+          "-50",
+          "-50",
+          "-50",
+          "-50",
+          "-50"
+        ],
+        "b": [
+          "-50",
+          "-50",
+          "-50",
+          "-50",
+          "-50",
+          "-50",
+          "-50",
+          "-50",
+          "-50",
+          "-50"
+        ],
+        "observed_pdi": 0.0,
+        "null_mean": 0.0,
+        "state_distance": 0.6261182381625672,
+        "side_a_state": {
+          "answer": "-50",
+          "confidence": 0.7238305807113647,
+          "entropy": 0.8501787185668945,
+          "normalized_position": 0.9285714285714286
+        },
+        "side_b_state": {
+          "answer": "-50",
+          "confidence": 0.1183171272277832,
+          "entropy": 0.6908755302429199,
+          "normalized_position": 0.9012345679012346
+        },
+        "n_a": 10,
+        "n_b": 10,
+        "track": "round2",
+        "file": "round2_level1_0-2.json"
+      },
+      {
+        "problem_id": "d1_prob0",
+        "a": [
+          "\\sqrt{51}",
+          "\\sqrt{51}",
+          "\\sqrt{51}",
+          "\\sqrt{51}",
+          "\\sqrt{51}",
+          "\\sqrt{51}",
+          "\\sqrt{51}",
+          "\\sqrt{51}",
+          "\\sqrt{51}",
+          "\\sqrt{51}"
+        ],
+        "b": [
+          "\\sqrt{51}",
+          "\\sqrt{51}",
+          "\\sqrt{51}",
+          "\\sqrt{51}",
+          "\\sqrt{51}",
+          "\\sqrt{51}",
+          "\\sqrt{51}",
+          "\\sqrt{51}",
+          "\\sqrt{51}",
+          "\\sqrt{51}"
+        ],
+        "observed_pdi": 0.0,
+        "null_mean": 0.0,
+        "state_distance": 1.5181665555924957,
+        "side_a_state": {
+          "answer": "\\sqrt{51}",
+          "confidence": 0.6829252243041992,
+          "entropy": 1.484686255455017,
+          "normalized_position": 0.8064516129032258
+        },
+        "side_b_state": {
+          "answer": "\\sqrt{51}",
+          "confidence": 1.0,
+          "entropy": -0.0,
+          "normalized_position": 0.95
+        },
+        "n_a": 10,
+        "n_b": 10,
+        "track": "round2",
+        "file": "round2_level1_0-2.json"
+      },
+      {
+        "problem_id": "d1_prob3",
+        "a": [
+          "2000",
+          "2000",
+          "2000",
+          "2000",
+          "2000",
+          "2000",
+          "2000",
+          "2000",
+          "2000",
+          "2000"
+        ],
+        "b": [
+          "2000",
+          "2000",
+          "2000",
+          "2000",
+          "2000",
+          "2000",
+          "2000",
+          "2000",
+          "2000",
+          "2000"
+        ],
+        "observed_pdi": 0.0,
+        "null_mean": 0.0,
+        "state_distance": 0.634033469592295,
+        "side_a_state": {
+          "answer": "2000",
+          "confidence": 0.48569193482398987,
+          "entropy": 1.7278813123703003,
+          "normalized_position": 0.8333333333333334
+        },
+        "side_b_state": {
+          "answer": "2000",
+          "confidence": 0.24751071631908417,
+          "entropy": 1.1402860879898071,
+          "normalized_position": 0.9230769230769231
+        },
+        "n_a": 10,
+        "n_b": 10,
+        "track": "round2",
+        "file": "round2_level1_2-4.json"
+      },
+      {
+        "problem_id": "d1_prob3",
+        "a": [
+          "2000",
+          "2000",
+          "2000",
+          "2000",
+          "2000",
+          "2000",
+          "2000",
+          "2000",
+          "2000",
+          "2000"
+        ],
+        "b": [
+          "2000",
+          "2000",
+          "2000",
+          "2000",
+          "2000",
+          "2000",
+          "2000",
+          "2000",
+          "2000",
+          "2000"
+        ],
+        "observed_pdi": 0.0,
+        "null_mean": 0.0,
+        "state_distance": 1.8027996604014553,
+        "side_a_state": {
+          "answer": "2000",
+          "confidence": 0.48569193482398987,
+          "entropy": 1.7278813123703003,
+          "normalized_position": 0.8333333333333334
+        },
+        "side_b_state": {
+          "answer": "2000",
+          "confidence": 1.0,
+          "entropy": -0.0,
+          "normalized_position": 0.9411764705882353
+        },
+        "n_a": 10,
+        "n_b": 10,
+        "track": "round2",
+        "file": "round2_level1_2-4.json"
+      },
+      {
+        "problem_id": "d1_prob3",
+        "a": [
+          "2000",
+          "2000",
+          "2000",
+          "2000",
+          "2000",
+          "2000",
+          "2000",
+          "2000",
+          "2000",
+          "2000"
+        ],
+        "b": [
+          "2000",
+          "2000",
+          "2000",
+          "2000",
+          "2000",
+          "2000",
+          "2000",
+          "2000",
+          "2000",
+          "2000"
+        ],
+        "observed_pdi": 0.0,
+        "null_mean": 0.0,
+        "state_distance": 0.0,
+        "side_a_state": {
+          "answer": "2000",
+          "confidence": 1.0,
+          "entropy": -0.0,
+          "normalized_position": 0.9814814814814815
+        },
+        "side_b_state": {
+          "answer": "2000",
+          "confidence": 1.0,
+          "entropy": -0.0,
+          "normalized_position": 1.0
+        },
+        "n_a": 10,
+        "n_b": 10,
+        "track": "round2",
+        "file": "round2_level1_2-4.json"
+      },
+      {
+        "problem_id": "d1_prob3",
+        "a": [
+          "2000",
+          "2000",
+          "2000",
+          "2000",
+          "2000",
+          "2000",
+          "2000",
+          "2000",
+          "2000",
+          "2000"
+        ],
+        "b": [
+          "2000",
+          "2000",
+          "2000",
+          "2000",
+          "2000",
+          "2000",
+          "2000",
+          "2000",
+          "2000",
+          "2000"
+        ],
+        "observed_pdi": 0.0,
+        "null_mean": 0.0,
+        "state_distance": 1.0894010899232578,
+        "side_a_state": {
+          "answer": "2000",
+          "confidence": 0.48569193482398987,
+          "entropy": 1.7278813123703003,
+          "normalized_position": 0.8333333333333334
+        },
+        "side_b_state": {
+          "answer": "2000",
+          "confidence": 0.1808774173259735,
+          "entropy": 0.681992769241333,
+          "normalized_position": 0.8823529411764706
+        },
+        "n_a": 10,
+        "n_b": 10,
+        "track": "round2",
+        "file": "round2_level1_2-4.json"
+      },
+      {
+        "problem_id": "d1_prob3",
+        "a": [
+          "2000",
+          "2000",
+          "2000",
+          "2000",
+          "2000",
+          "2000",
+          "2000",
+          "2000",
+          "2000",
+          "2000"
+        ],
+        "b": [
+          "2000",
+          "2000",
+          "2000",
+          "2000",
+          "2000",
+          "2000",
+          "2000",
+          "2000",
+          "2000",
+          "2000"
+        ],
+        "observed_pdi": 0.0,
+        "null_mean": 0.0,
+        "state_distance": 1.0417062178045995,
+        "side_a_state": {
+          "answer": "2000",
+          "confidence": 1.0,
+          "entropy": -0.0,
+          "normalized_position": 0.75
+        },
+        "side_b_state": {
+          "answer": "2000",
+          "confidence": 0.6089043021202087,
+          "entropy": 0.9655029773712158,
+          "normalized_position": 0.8888888888888888
+        },
+        "n_a": 10,
+        "n_b": 10,
+        "track": "round2",
+        "file": "round2_level1_2-4.json"
+      },
+      {
+        "problem_id": "d1_prob5",
+        "a": [
+          "1",
+          "1",
+          "1",
+          "1",
+          "1",
+          "1",
+          "1",
+          "1",
+          "1",
+          "1"
+        ],
+        "b": [
+          "1",
+          "1",
+          "1",
+          "1",
+          "1",
+          "1",
+          "1",
+          "1",
+          "1",
+          "1"
+        ],
+        "observed_pdi": 0.0,
+        "null_mean": 0.0,
+        "state_distance": 0.8060341364638431,
+        "side_a_state": {
+          "answer": "1",
+          "confidence": 0.07228647917509079,
+          "entropy": 0.37439900636672974,
+          "normalized_position": 0.9411764705882353
+        },
+        "side_b_state": {
+          "answer": "1",
+          "confidence": 0.7817748188972473,
+          "entropy": 0.7569134831428528,
+          "normalized_position": 0.9
+        },
+        "n_a": 10,
+        "n_b": 10,
+        "track": "round2",
+        "file": "round2_level1_4-6.json"
+      },
+      {
+        "problem_id": "d1_prob5",
+        "a": [
+          "1",
+          "1",
+          "1",
+          "1",
+          "1",
+          "1",
+          "1",
+          "1",
+          "1",
+          "1"
+        ],
+        "b": [
+          "1",
+          "1",
+          "1",
+          "1",
+          "1",
+          "1",
+          "1",
+          "1",
+          "1",
+          "1"
+        ],
+        "observed_pdi": 0.0,
+        "null_mean": 0.0,
+        "state_distance": 1.4939280100092327,
+        "side_a_state": {
+          "answer": "1",
+          "confidence": 1.0,
+          "entropy": -0.0,
+          "normalized_position": 1.0
+        },
+        "side_b_state": {
+          "answer": "1",
+          "confidence": 0.3677743971347809,
+          "entropy": 1.3535552024841309,
+          "normalized_position": 0.9130434782608695
+        },
+        "n_a": 10,
+        "n_b": 10,
+        "track": "round2",
+        "file": "round2_level1_4-6.json"
+      },
+      {
+        "problem_id": "d1_prob5",
+        "a": [
+          "1",
+          "1",
+          "1",
+          "1",
+          "1",
+          "1",
+          "1",
+          "1",
+          "1",
+          "1"
+        ],
+        "b": [
+          "1",
+          "1",
+          "1",
+          "1",
+          "1",
+          "1",
+          "1",
+          "1",
+          "1",
+          "1"
+        ],
+        "observed_pdi": 0.0,
+        "null_mean": 0.0,
+        "state_distance": 0.0,
+        "side_a_state": {
+          "answer": "1",
+          "confidence": 1.0,
+          "entropy": -0.0,
+          "normalized_position": 0.9130434782608695
+        },
+        "side_b_state": {
+          "answer": "1",
+          "confidence": 1.0,
+          "entropy": -0.0,
+          "normalized_position": 0.8823529411764706
+        },
+        "n_a": 10,
+        "n_b": 10,
+        "track": "round2",
+        "file": "round2_level1_4-6.json"
+      },
+      {
+        "problem_id": "d1_prob5",
+        "a": [
+          "1",
+          "1",
+          "1",
+          "1",
+          "1",
+          "1",
+          "1",
+          "1",
+          "1",
+          "1"
+        ],
+        "b": [
+          "1",
+          "1",
+          "1",
+          "1",
+          "1",
+          "1",
+          "1",
+          "1",
+          "1",
+          "1"
+        ],
+        "observed_pdi": 0.0,
+        "null_mean": 0.0,
+        "state_distance": 1.0227707299562552,
+        "side_a_state": {
+          "answer": "1",
+          "confidence": 0.07228647917509079,
+          "entropy": 0.37439900636672974,
+          "normalized_position": 0.9411764705882353
+        },
+        "side_b_state": {
+          "answer": "1",
+          "confidence": 0.3677743971347809,
+          "entropy": 1.3535552024841309,
+          "normalized_position": 0.9130434782608695
+        },
+        "n_a": 10,
+        "n_b": 10,
+        "track": "round2",
+        "file": "round2_level1_4-6.json"
+      },
+      {
+        "problem_id": "d1_prob4",
+        "a": [
+          "9901",
+          "9901",
+          "9901",
+          "9901",
+          "9901",
+          "9901",
+          "9901",
+          "9901",
+          "9901",
+          "9901"
+        ],
+        "b": [
+          "9901",
+          "9901",
+          "9901",
+          "9901",
+          "9901",
+          "9901",
+          "9901",
+          "9901",
+          "9901",
+          "9901"
+        ],
+        "observed_pdi": 0.0,
+        "null_mean": 0.0,
+        "state_distance": 1.894627470502563,
+        "side_a_state": {
+          "answer": "9901",
+          "confidence": 0.45116254687309265,
+          "entropy": 1.8133920431137085,
+          "normalized_position": 0.868421052631579
+        },
+        "side_b_state": {
+          "answer": "9901",
+          "confidence": 1.0,
+          "entropy": -0.0,
+          "normalized_position": 0.967741935483871
+        },
+        "n_a": 10,
+        "n_b": 10,
+        "track": "round2",
+        "file": "round2_level1_4-6.json"
+      },
+      {
+        "problem_id": "d2_prob1",
+        "a": [
+          "evelyn",
+          "evelyn",
+          "evelyn",
+          "evelyn",
+          "evelyn",
+          "evelyn",
+          "evelyn",
+          "evelyn",
+          "evelyn",
+          "evelyn"
+        ],
+        "b": [
+          "evelyn",
+          "evelyn",
+          "evelyn",
+          "evelyn",
+          "evelyn",
+          "evelyn",
+          "evelyn",
+          "evelyn",
+          "evelyn",
+          "evelyn"
+        ],
+        "observed_pdi": 0.0,
+        "null_mean": 0.0,
+        "state_distance": 0.6861434146744941,
+        "side_a_state": {
+          "answer": "evelyn",
+          "confidence": 0.18706980347633362,
+          "entropy": 0.9646283388137817,
+          "normalized_position": 0.7837837837837838
+        },
+        "side_b_state": {
+          "answer": "evelyn",
+          "confidence": 0.05133582651615143,
+          "entropy": 0.292044460773468,
+          "normalized_position": 0.8947368421052632
+        },
+        "n_a": 10,
+        "n_b": 10,
+        "track": "round2",
+        "file": "round2_level2_0-2.json"
+      },
+      {
+        "problem_id": "d2_prob1",
+        "a": [
+          "evelyn",
+          "evelyn",
+          "evelyn",
+          "evelyn",
+          "evelyn",
+          "evelyn",
+          "evelyn",
+          "evelyn",
+          "evelyn",
+          "evelyn"
+        ],
+        "b": [
+          "evelyn",
+          "evelyn",
+          "evelyn",
+          "evelyn",
+          "evelyn",
+          "evelyn",
+          "evelyn",
+          "evelyn",
+          "evelyn",
+          "evelyn"
+        ],
+        "observed_pdi": 0.0,
+        "null_mean": 0.0,
+        "state_distance": 1.0081512854060264,
+        "side_a_state": {
+          "answer": "evelyn",
+          "confidence": 0.6441160440444946,
+          "entropy": 1.6112595796585083,
+          "normalized_position": 0.7777777777777778
+        },
+        "side_b_state": {
+          "answer": "evelyn",
+          "confidence": 0.844579815864563,
+          "entropy": 0.6232396960258484,
+          "normalized_position": 0.7843137254901961
+        },
+        "n_a": 10,
+        "n_b": 10,
+        "track": "round2",
+        "file": "round2_level2_0-2.json"
+      },
+      {
+        "problem_id": "d2_prob0",
+        "a": [
+          "(3\\pi/2)",
+          "(3\\pi/2)",
+          "(3\\pi/2)",
+          "(3\\pi/2)",
+          "(3\\pi/2)",
+          "(3\\pi/2)",
+          "(3\\pi/2)",
+          "(3\\pi/2)",
+          "(3\\pi/2)",
+          "(3\\pi/2)"
+        ],
+        "b": [
+          "(3\\pi/2)",
+          "(3\\pi/2)",
+          "(3\\pi/2)",
+          "(3\\pi/2)",
+          "(3\\pi/2)",
+          "(3\\pi/2)",
+          "(3\\pi/2)",
+          "(3\\pi/2)",
+          "(3\\pi/2)",
+          "(3\\pi/2)"
+        ],
+        "observed_pdi": 0.0,
+        "null_mean": 0.0,
+        "state_distance": 0.0,
+        "side_a_state": {
+          "answer": "(3\\pi/2)",
+          "confidence": 1.0,
+          "entropy": -0.0,
+          "normalized_position": 0.9629629629629629
+        },
+        "side_b_state": {
+          "answer": "(3\\pi/2)",
+          "confidence": 1.0,
+          "entropy": -0.0,
+          "normalized_position": 0.9565217391304348
+        },
+        "n_a": 10,
+        "n_b": 10,
+        "track": "round2",
+        "file": "round2_level2_0-2.json"
+      },
+      {
+        "problem_id": "d2_prob1",
+        "a": [
+          "evelyn",
+          "evelyn",
+          "evelyn",
+          "evelyn",
+          "evelyn",
+          "evelyn",
+          "evelyn",
+          "evelyn",
+          "evelyn",
+          "evelyn"
+        ],
+        "b": [
+          "evelyn",
+          "evelyn",
+          "evelyn",
+          "evelyn",
+          "evelyn",
+          "evelyn",
+          "evelyn",
+          "evelyn",
+          "evelyn",
+          "evelyn"
+        ],
+        "observed_pdi": 0.0,
+        "null_mean": 0.0,
+        "state_distance": 0.3539312405933863,
+        "side_a_state": {
+          "answer": "evelyn",
+          "confidence": 0.0446445494890213,
+          "entropy": 1.123910665512085,
+          "normalized_position": 0.918918918918919
+        },
+        "side_b_state": {
+          "answer": "evelyn",
+          "confidence": 0.33111974596977234,
+          "entropy": 0.9160662889480591,
+          "normalized_position": 0.9411764705882353
+        },
+        "n_a": 10,
+        "n_b": 10,
+        "track": "round2",
+        "file": "round2_level2_0-2.json"
+      },
+      {
+        "problem_id": "d2_prob1",
+        "a": [
+          "evelyn",
+          "evelyn",
+          "7/5",
+          "evelyn",
+          "evelyn",
+          "evelyn",
+          "evelyn",
+          "evelyn",
+          "evelyn",
+          "evelyn"
+        ],
+        "b": [
+          "evelyn",
+          "e",
+          "evelyn",
+          "evelyn",
+          "evelyn",
+          "evelyn",
+          "evelyn",
+          "evelyn",
+          "evelyn",
+          "evelyn"
+        ],
+        "observed_pdi": 0.1,
+        "null_mean": 0.10389128410754324,
+        "state_distance": 0.731552344296843,
+        "side_a_state": {
+          "answer": "evelyn",
+          "confidence": 0.5366343855857849,
+          "entropy": 1.361811637878418,
+          "normalized_position": 0.746031746031746
+        },
+        "side_b_state": {
+          "answer": "evelyn",
+          "confidence": 0.8891947269439697,
+          "entropy": 0.7208201885223389,
+          "normalized_position": 0.7543859649122807
+        },
+        "n_a": 10,
+        "n_b": 10,
+        "track": "round2",
+        "file": "round2_level2_0-2.json"
+      },
+      {
+        "problem_id": "d2_prob2",
+        "a": [
+          "42",
+          "42",
+          "42",
+          "42",
+          "42",
+          "42",
+          "42",
+          "42",
+          "42",
+          "42"
+        ],
+        "b": [
+          "42",
+          "42",
+          "42",
+          "42",
+          "42",
+          "42",
+          "42",
+          "42",
+          "42",
+          "42"
+        ],
+        "observed_pdi": 0.0,
+        "null_mean": 0.0,
+        "state_distance": 0.6078287096366743,
+        "side_a_state": {
+          "answer": "42",
+          "confidence": 0.18476751446723938,
+          "entropy": 0.690396249294281,
+          "normalized_position": 0.8823529411764706
+        },
+        "side_b_state": {
+          "answer": "42",
+          "confidence": 0.7905303239822388,
+          "entropy": 0.7404677867889404,
+          "normalized_position": 0.9090909090909091
+        },
+        "n_a": 10,
+        "n_b": 10,
+        "track": "round2",
+        "file": "round2_level2_2-4.json"
+      },
+      {
+        "problem_id": "d2_prob3",
+        "a": [
+          "5",
+          "5",
+          "5",
+          "5",
+          "5",
+          "5",
+          "5",
+          "5",
+          "5",
+          "5"
+        ],
+        "b": [
+          "5",
+          "5",
+          "5",
+          "5",
+          "5",
+          "5",
+          "5",
+          "5",
+          "5",
+          "5"
+        ],
+        "observed_pdi": 0.0,
+        "null_mean": 0.0,
+        "state_distance": 0.9432616098141526,
+        "side_a_state": {
+          "answer": "5",
+          "confidence": 1.0,
+          "entropy": -0.0,
+          "normalized_position": 1.0
+        },
+        "side_b_state": {
+          "answer": "5",
+          "confidence": 0.6915315389633179,
+          "entropy": 0.8913975954055786,
+          "normalized_position": 0.9444444444444444
+        },
+        "n_a": 10,
+        "n_b": 10,
+        "track": "round2",
+        "file": "round2_level2_2-4.json"
+      },
+      {
+        "problem_id": "d2_prob2",
+        "a": [
+          "42",
+          "42",
+          "42",
+          "42",
+          "42",
+          "42",
+          "42",
+          "42",
+          "42",
+          "42"
+        ],
+        "b": [
+          "42",
+          "42",
+          "42",
+          "42",
+          "42",
+          "42",
+          "42",
+          "42",
+          "42",
+          "42"
+        ],
+        "observed_pdi": 0.0,
+        "null_mean": 0.0,
+        "state_distance": 0.0,
+        "side_a_state": {
+          "answer": "42",
+          "confidence": 1.0,
+          "entropy": -0.0,
+          "normalized_position": 0.9
+        },
+        "side_b_state": {
+          "answer": "42",
+          "confidence": 1.0,
+          "entropy": -0.0,
+          "normalized_position": 1.0
+        },
+        "n_a": 10,
+        "n_b": 10,
+        "track": "round2",
+        "file": "round2_level2_2-4.json"
+      },
+      {
+        "problem_id": "d2_prob3",
+        "a": [
+          "5",
+          "5",
+          "5",
+          "5",
+          "5",
+          "5",
+          "5",
+          "5",
+          "5",
+          "5"
+        ],
+        "b": [
+          "5",
+          "5",
+          "5",
+          "5",
+          "5",
+          "5",
+          "5",
+          "5",
+          "5",
+          "5"
+        ],
+        "observed_pdi": 0.0,
+        "null_mean": 0.0,
+        "state_distance": 0.5202406005166795,
+        "side_a_state": {
+          "answer": "5",
+          "confidence": 0.17328819632530212,
+          "entropy": 0.6651718020439148,
+          "normalized_position": 0.9473684210526315
+        },
+        "side_b_state": {
+          "answer": "5",
+          "confidence": 0.5901500582695007,
+          "entropy": 0.9764216542243958,
+          "normalized_position": 0.9545454545454546
+        },
+        "n_a": 10,
+        "n_b": 10,
+        "track": "round2",
+        "file": "round2_level2_2-4.json"
+      },
+      {
+        "problem_id": "d2_prob2",
+        "a": [
+          "42",
+          "42",
+          "42",
+          "42",
+          "42",
+          "42",
+          "42",
+          "42",
+          "42",
+          "42"
+        ],
+        "b": [
+          "42",
+          "42",
+          "42",
+          "42",
+          "42",
+          "42",
+          "42",
+          "42",
+          "42",
+          "42"
+        ],
+        "observed_pdi": 0.0,
+        "null_mean": 0.0,
+        "state_distance": 1.0682934926823873,
+        "side_a_state": {
+          "answer": "42",
+          "confidence": 0.18476751446723938,
+          "entropy": 0.690396249294281,
+          "normalized_position": 0.8823529411764706
+        },
+        "side_b_state": {
+          "answer": "42",
+          "confidence": 1.0,
+          "entropy": -0.0,
+          "normalized_position": 1.0
+        },
+        "n_a": 10,
+        "n_b": 10,
+        "track": "round2",
+        "file": "round2_level2_2-4.json"
+      },
+      {
+        "problem_id": "d2_prob5",
+        "a": [
+          "-2+7i",
+          "-2+7i",
+          "-2+7i",
+          "-2+7i",
+          "-2+7i",
+          "-2+7i",
+          "-2+7i",
+          "-2+7i",
+          "-2+7i",
+          "-2+7i"
+        ],
+        "b": [
+          "-2+7i",
+          "-2+7i",
+          "-2+7i",
+          "-2+7i",
+          "-2+7i",
+          "-2+7i",
+          "-2+7i",
+          "-2+7i",
+          "-2+7i",
+          "-2+7i"
+        ],
+        "observed_pdi": 0.0,
+        "null_mean": 0.0,
+        "state_distance": 0.7418690595933548,
+        "side_a_state": {
+          "answer": "-2+7i",
+          "confidence": 0.7315701842308044,
+          "entropy": 0.8392025232315063,
+          "normalized_position": 0.9863013698630136
+        },
+        "side_b_state": {
+          "answer": "-2+7i",
+          "confidence": 0.23952575027942657,
+          "entropy": 1.3944159746170044,
+          "normalized_position": 0.9859154929577465
+        },
+        "n_a": 10,
+        "n_b": 10,
+        "track": "round2",
+        "file": "round2_level2_4-6.json"
+      },
+      {
+        "problem_id": "d2_prob4",
+        "a": [
+          "78",
+          "78",
+          "78",
+          "78",
+          "78",
+          "78",
+          "78",
+          "78",
+          "78",
+          "78"
+        ],
+        "b": [
+          "78",
+          "78",
+          "78",
+          "78",
+          "78",
+          "78",
+          "78",
+          "78",
+          "78",
+          "78"
+        ],
+        "observed_pdi": 0.0,
+        "null_mean": 0.0,
+        "state_distance": 1.3348214205423534,
+        "side_a_state": {
+          "answer": "78",
+          "confidence": 1.0,
+          "entropy": -0.0,
+          "normalized_position": 0.7619047619047619
+        },
+        "side_b_state": {
+          "answer": "78",
+          "confidence": 0.4935964345932007,
+          "entropy": 1.2350318431854248,
+          "normalized_position": 0.6666666666666666
+        },
+        "n_a": 10,
+        "n_b": 10,
+        "track": "round2",
+        "file": "round2_level2_4-6.json"
+      },
+      {
+        "problem_id": "d2_prob4",
+        "a": [
+          "78",
+          "78",
+          "78",
+          "78",
+          "78",
+          "78",
+          "78",
+          "78",
+          "78",
+          "78"
+        ],
+        "b": [
+          "78",
+          "78",
+          "78",
+          "78",
+          "78",
+          "78",
+          "78",
+          "78",
+          "78",
+          "78"
+        ],
+        "observed_pdi": 0.0,
+        "null_mean": 0.0,
+        "state_distance": 0.0,
+        "side_a_state": {
+          "answer": "78",
+          "confidence": 1.0,
+          "entropy": -0.0,
+          "normalized_position": 0.8571428571428571
+        },
+        "side_b_state": {
+          "answer": "78",
+          "confidence": 1.0,
+          "entropy": -0.0,
+          "normalized_position": 0.8148148148148148
+        },
+        "n_a": 10,
+        "n_b": 10,
+        "track": "round2",
+        "file": "round2_level2_4-6.json"
+      },
+      {
+        "problem_id": "d2_prob5",
+        "a": [
+          "-2+7i",
+          "-2+7i",
+          "-2+7i",
+          "-2+7i",
+          "-2+7i",
+          "-2+7i",
+          "-2+7i",
+          "-2+7i",
+          "-2+7i",
+          "-2+7i"
+        ],
+        "b": [
+          "-2+7i",
+          "-2+7i",
+          "-2+7i",
+          "-2+7i",
+          "-2+7i",
+          "-2+7i",
+          "-2+7i",
+          "-2+7i",
+          "-2+7i",
+          "-2+7i"
+        ],
+        "observed_pdi": 0.0,
+        "null_mean": 0.0,
+        "state_distance": 0.6459699037896534,
+        "side_a_state": {
+          "answer": "-2+7i",
+          "confidence": 0.1390843540430069,
+          "entropy": 0.5818357467651367,
+          "normalized_position": 0.9230769230769231
+        },
+        "side_b_state": {
+          "answer": "-2+7i",
+          "confidence": 0.7315701842308044,
+          "entropy": 0.8392025232315063,
+          "normalized_position": 0.9863013698630136
+        },
+        "n_a": 10,
+        "n_b": 10,
+        "track": "round2",
+        "file": "round2_level2_4-6.json"
+      },
+      {
+        "problem_id": "d2_prob5",
+        "a": [
+          "-2+7i",
+          "-2+7i",
+          "-2+7i",
+          "-2+7i",
+          "-2+7i",
+          "-2+7i",
+          "-2+7i",
+          "-2+7i",
+          "-2+7i",
+          "-2+7i"
+        ],
+        "b": [
+          "-2+7i",
+          "-2+7i",
+          "-2+7i",
+          "-2+7i",
+          "-2+7i",
+          "-2+7i",
+          "-2+7i",
+          "-2+7i",
+          "-2+7i",
+          "-2+7i"
+        ],
+        "observed_pdi": 0.0,
+        "null_mean": 0.0,
+        "state_distance": 1.1355447611865854,
+        "side_a_state": {
+          "answer": "-2+7i",
+          "confidence": 1.0,
+          "entropy": -0.0,
+          "normalized_position": 0.9487179487179487
+        },
+        "side_b_state": {
+          "answer": "-2+7i",
+          "confidence": 0.33691245317459106,
+          "entropy": 0.9218333959579468,
+          "normalized_position": 0.971830985915493
+        },
+        "n_a": 10,
+        "n_b": 10,
+        "track": "round2",
+        "file": "round2_level2_4-6.json"
+      },
+      {
+        "problem_id": "d3_prob0",
+        "a": [
+          "14/3",
+          "14/3",
+          "14/3",
+          "14/3",
+          "14/3",
+          "14/3",
+          "14/3",
+          "14/3",
+          "14/3",
+          "14/3"
+        ],
+        "b": [
+          "14/3",
+          "14/3",
+          "14/3",
+          "14/3",
+          "14/3",
+          "14/3",
+          "14/3",
+          "14/3",
+          "14/3",
+          "14/3"
+        ],
+        "observed_pdi": 0.0,
+        "null_mean": 0.0,
+        "state_distance": 0.7411133692893512,
+        "side_a_state": {
+          "answer": "14/3",
+          "confidence": 0.6846868991851807,
+          "entropy": 1.7234385013580322,
+          "normalized_position": 0.8392857142857143
+        },
+        "side_b_state": {
+          "answer": "14/3",
+          "confidence": 0.10967805236577988,
+          "entropy": 1.255876898765564,
+          "normalized_position": 0.8076923076923077
+        },
+        "n_a": 10,
+        "n_b": 10,
+        "track": "round2",
+        "file": "round2_level3_0-2.json"
+      },
+      {
+        "problem_id": "d3_prob1",
+        "a": [
+          "9",
+          "9",
+          "9",
+          "9",
+          "9",
+          "9",
+          "9",
+          "9",
+          "9",
+          "9"
+        ],
+        "b": [
+          "9",
+          "9",
+          "9",
+          "9",
+          "9",
+          "9",
+          "9",
+          "9",
+          "9",
+          "9"
+        ],
+        "observed_pdi": 0.0,
+        "null_mean": 0.0,
+        "state_distance": 1.5649845538789262,
+        "side_a_state": {
+          "answer": "9",
+          "confidence": 0.5120670199394226,
+          "entropy": 1.486976146697998,
+          "normalized_position": 0.9146341463414634
+        },
+        "side_b_state": {
+          "answer": "9",
+          "confidence": 1.0,
+          "entropy": -0.0,
+          "normalized_position": 0.9523809523809523
+        },
+        "n_a": 10,
+        "n_b": 10,
+        "track": "round2",
+        "file": "round2_level3_0-2.json"
+      },
+      {
+        "problem_id": "d3_prob0",
+        "a": [
+          "14/3",
+          "14/3",
+          "14/3",
+          "14/3",
+          "14/3",
+          "14/3",
+          "14/3",
+          "14/3",
+          "14/3",
+          "14/3"
+        ],
+        "b": [
+          "14/3",
+          "14/3",
+          "14/3",
+          "14/3",
+          "14/3",
+          "14/3",
+          "14/3",
+          "14/3",
+          "14/3",
+          "14/3"
+        ],
+        "observed_pdi": 0.0,
+        "null_mean": 0.0,
+        "state_distance": 0.0,
+        "side_a_state": {
+          "answer": "14/3",
+          "confidence": 1.0,
+          "entropy": -0.0,
+          "normalized_position": 0.8571428571428571
+        },
+        "side_b_state": {
+          "answer": "14/3",
+          "confidence": 1.0,
+          "entropy": -0.0,
+          "normalized_position": 0.9770114942528736
+        },
+        "n_a": 10,
+        "n_b": 10,
+        "track": "round2",
+        "file": "round2_level3_0-2.json"
+      },
+      {
+        "problem_id": "d3_prob0",
+        "a": [
+          "14/3",
+          "14/3",
+          "14/3",
+          "14/3",
+          "14/3",
+          "14/3",
+          "14/3",
+          "14/3",
+          "14/3",
+          "14/3"
+        ],
+        "b": [
+          "14/3",
+          "14/3",
+          "14/3",
+          "14/3",
+          "14/3",
+          "14/3",
+          "14/3",
+          "14/3",
+          "14/3",
+          "14/3"
+        ],
+        "observed_pdi": 0.0,
+        "null_mean": 0.0,
+        "state_distance": 1.142822266666794,
+        "side_a_state": {
+          "answer": "14/3",
+          "confidence": 0.7905303239822388,
+          "entropy": 0.7404677867889404,
+          "normalized_position": 0.9425287356321839
+        },
+        "side_b_state": {
+          "answer": "14/3",
+          "confidence": 0.20020568370819092,
+          "entropy": 1.719017505645752,
+          "normalized_position": 0.9615384615384616
+        },
+        "n_a": 10,
+        "n_b": 10,
+        "track": "round2",
+        "file": "round2_level3_0-2.json"
+      },
+      {
+        "problem_id": "d3_prob0",
+        "a": [
+          "14/3",
+          "14/3",
+          "14/3",
+          "14/3",
+          "14/3",
+          "14/3",
+          "14/3",
+          "14/3",
+          "14/3",
+          "14/3"
+        ],
+        "b": [
+          "14/3",
+          "14/3",
+          "14/3",
+          "14/3",
+          "14/3",
+          "14/3",
+          "14/3",
+          "14/3",
+          "14/3",
+          "14/3"
+        ],
+        "observed_pdi": 0.0,
+        "null_mean": 0.0,
+        "state_distance": 0.9985587764282253,
+        "side_a_state": {
+          "answer": "14/3",
+          "confidence": 0.06804042309522629,
+          "entropy": 0.3585679531097412,
+          "normalized_position": 0.9122807017543859
+        },
+        "side_b_state": {
+          "answer": "14/3",
+          "confidence": 1.0,
+          "entropy": -0.0,
+          "normalized_position": 0.9770114942528736
+        },
+        "n_a": 10,
+        "n_b": 10,
+        "track": "round2",
+        "file": "round2_level3_0-2.json"
+      },
+      {
+        "problem_id": "d3_prob2",
+        "a": [
+          "27",
+          "27",
+          "27",
+          "27",
+          "27",
+          "27",
+          "27",
+          "27",
+          "27",
+          "27"
+        ],
+        "b": [
+          "27",
+          "27",
+          "27",
+          "27",
+          "27",
+          "27",
+          "27",
+          "27",
+          "27",
+          "27"
+        ],
+        "observed_pdi": 0.0,
+        "null_mean": 0.0,
+        "state_distance": 1.4061471651205735,
+        "side_a_state": {
+          "answer": "27",
+          "confidence": 0.04281267151236534,
+          "entropy": 1.4292787313461304,
+          "normalized_position": 0.9655172413793104
+        },
+        "side_b_state": {
+          "answer": "27",
+          "confidence": 0.9359737038612366,
+          "entropy": 0.34322476387023926,
+          "normalized_position": 0.8809523809523809
+        },
+        "n_a": 10,
+        "n_b": 10,
+        "track": "round2",
+        "file": "round2_level3_2-4.json"
+      },
+      {
+        "problem_id": "d3_prob2",
+        "a": [
+          "27",
+          "27",
+          "27",
+          "27",
+          "27",
+          "27",
+          "27",
+          "27",
+          "27",
+          "27"
+        ],
+        "b": [
+          "27",
+          "27",
+          "27",
+          "27",
+          "27",
+          "27",
+          "27",
+          "27",
+          "27",
+          "27"
+        ],
+        "observed_pdi": 0.0,
+        "null_mean": 0.0,
+        "state_distance": 2.3163787444365895,
+        "side_a_state": {
+          "answer": "27",
+          "confidence": 0.12685853242874146,
+          "entropy": 2.145514965057373,
+          "normalized_position": 0.9482758620689655
+        },
+        "side_b_state": {
+          "answer": "27",
+          "confidence": 1.0,
+          "entropy": -0.0,
+          "normalized_position": 0.9117647058823529
+        },
+        "n_a": 10,
+        "n_b": 10,
+        "track": "round2",
+        "file": "round2_level3_2-4.json"
+      },
+      {
+        "problem_id": "d3_prob3",
+        "a": [
+          "3\\sqrt{13}",
+          "3\\sqrt{13}",
+          "3\\sqrt{13}",
+          "3\\sqrt{13}",
+          "3\\sqrt{13}",
+          "3\\sqrt{13}",
+          "3\\sqrt{13}",
+          "3\\sqrt{13}",
+          "3\\sqrt{13}",
+          "3\\sqrt{13}"
+        ],
+        "b": [
+          "3\\sqrt{13}",
+          "3\\sqrt{13}",
+          "3\\sqrt{13}",
+          "3\\sqrt{13}",
+          "3\\sqrt{13}",
+          "3\\sqrt{13}",
+          "3\\sqrt{13}",
+          "3\\sqrt{13}",
+          "3\\sqrt{13}",
+          "3\\sqrt{13}"
+        ],
+        "observed_pdi": 0.0,
+        "null_mean": 0.0,
+        "state_distance": 1.0263756906043888,
+        "side_a_state": {
+          "answer": "3\\sqrt{13}",
+          "confidence": 1.0,
+          "entropy": -0.0,
+          "normalized_position": 0.8181818181818182
+        },
+        "side_b_state": {
+          "answer": "3\\sqrt{13}",
+          "confidence": 0.7622447609901428,
+          "entropy": 0.9984585642814636,
+          "normalized_position": 0.7777777777777778
+        },
+        "n_a": 10,
+        "n_b": 10,
+        "track": "round2",
+        "file": "round2_level3_2-4.json"
+      },
+      {
+        "problem_id": "d3_prob2",
+        "a": [
+          "27",
+          "27",
+          "27",
+          "27",
+          "27",
+          "27",
+          "27",
+          "27",
+          "27",
+          "27"
+        ],
+        "b": [
+          "27",
+          "27",
+          "27",
+          "27",
+          "27",
+          "27",
+          "27",
+          "27",
+          "27",
+          "27"
+        ],
+        "observed_pdi": 0.0,
+        "null_mean": 0.0,
+        "state_distance": 1.3456603741794928,
+        "side_a_state": {
+          "answer": "27",
+          "confidence": 0.04281267151236534,
+          "entropy": 1.4292787313461304,
+          "normalized_position": 0.9655172413793104
+        },
+        "side_b_state": {
+          "answer": "27",
+          "confidence": 0.9184802770614624,
+          "entropy": 0.4075115919113159,
+          "normalized_position": 0.8717948717948718
+        },
+        "n_a": 10,
+        "n_b": 10,
+        "track": "round2",
+        "file": "round2_level3_2-4.json"
+      },
+      {
+        "problem_id": "d3_prob2",
+        "a": [
+          "27",
+          "27",
+          "27",
+          "27",
+          "27",
+          "27",
+          "27",
+          "27",
+          "27",
+          "27"
+        ],
+        "b": [
+          "27",
+          "27",
+          "27",
+          "27",
+          "27",
+          "27",
+          "27",
+          "27",
+          "27",
+          "27"
+        ],
+        "observed_pdi": 0.0,
+        "null_mean": 0.0,
+        "state_distance": 1.8377764256915288,
+        "side_a_state": {
+          "answer": "27",
+          "confidence": 1.0,
+          "entropy": -0.0,
+          "normalized_position": 0.7758620689655172
+        },
+        "side_b_state": {
+          "answer": "27",
+          "confidence": 0.5278110504150391,
+          "entropy": 1.7760798931121826,
+          "normalized_position": 0.7692307692307693
+        },
+        "n_a": 10,
+        "n_b": 10,
+        "track": "round2",
+        "file": "round2_level3_2-4.json"
+      },
+      {
+        "problem_id": "d3_prob5",
+        "a": [
+          "3",
+          "-2",
+          "3",
+          "3",
+          "3",
+          "3",
+          "3",
+          "0",
+          "3",
+          "3"
+        ],
+        "b": [
+          "3",
+          "3",
+          "-1",
+          "3",
+          "3",
+          "3",
+          "3",
+          "3",
+          "3",
+          "2"
+        ],
+        "observed_pdi": 0.19999999999999998,
+        "null_mean": 0.20793454802341432,
+        "state_distance": 0.5264226925217851,
+        "side_a_state": {
+          "answer": "3",
+          "confidence": 0.13006877899169922,
+          "entropy": 1.2228378057479858,
+          "normalized_position": 0.6987951807228916
+        },
+        "side_b_state": {
+          "answer": "3",
+          "confidence": 0.5978020429611206,
+          "entropy": 1.4643878936767578,
+          "normalized_position": 0.6379310344827587
+        },
+        "n_a": 10,
+        "n_b": 10,
+        "track": "round2",
+        "file": "round2_level3_4-6.json"
+      },
+      {
+        "problem_id": "d3_prob5",
+        "a": [
+          "3",
+          "3",
+          "3",
+          "3",
+          "3",
+          "3",
+          "3",
+          "3",
+          "3",
+          "1"
+        ],
+        "b": [
+          "3",
+          "3",
+          "3",
+          "3",
+          "3",
+          "3",
+          "3",
+          "3",
+          "3",
+          "3"
+        ],
+        "observed_pdi": 0.051899160321315606,
+        "null_mean": 0.05189916032131559,
+        "state_distance": 0.866589783414567,
+        "side_a_state": {
+          "answer": "3",
+          "confidence": 0.6159569621086121,
+          "entropy": 1.4777339696884155,
+          "normalized_position": 0.8470588235294118
+        },
+        "side_b_state": {
+          "answer": "3",
+          "confidence": 0.837619960308075,
+          "entropy": 0.6399730443954468,
+          "normalized_position": 0.9322033898305084
+        },
+        "n_a": 10,
+        "n_b": 10,
+        "track": "round2",
+        "file": "round2_level3_4-6.json"
+      },
+      {
+        "problem_id": "d3_prob4",
+        "a": [
+          "2220",
+          "2220",
+          "2220",
+          "2220",
+          "2220",
+          "2220",
+          "2220",
+          "2220",
+          "2220",
+          "2220"
+        ],
+        "b": [
+          "2220",
+          "2220",
+          "2220",
+          "2220",
+          "2220",
+          "2220",
+          "2220",
+          "2220",
+          "2220",
+          "2220"
+        ],
+        "observed_pdi": 0.0,
+        "null_mean": 0.0,
+        "state_distance": 0.5631028468566275,
+        "side_a_state": {
+          "answer": "2220",
+          "confidence": 0.9202143549919128,
+          "entropy": 0.5574218034744263,
+          "normalized_position": 0.9285714285714286
+        },
+        "side_b_state": {
+          "answer": "2220",
+          "confidence": 1.0,
+          "entropy": -0.0,
+          "normalized_position": 0.9852941176470589
+        },
+        "n_a": 10,
+        "n_b": 10,
+        "track": "round2",
+        "file": "round2_level3_4-6.json"
+      },
+      {
+        "problem_id": "d3_prob5",
+        "a": [
+          "-1",
+          "3",
+          "-1",
+          "3",
+          "3",
+          "3",
+          "3",
+          "3",
+          "3",
+          "3"
+        ],
+        "b": [
+          "3",
+          "3",
+          "3",
+          "3",
+          "3",
+          "3",
+          "3",
+          "3",
+          "3",
+          "3"
+        ],
+        "observed_pdi": 0.10803154614560004,
+        "null_mean": 0.05207120524217922,
+        "state_distance": 0.5486887832680755,
+        "side_a_state": {
+          "answer": "3",
+          "confidence": 0.13006877899169922,
+          "entropy": 1.2228378057479858,
+          "normalized_position": 0.6987951807228916
+        },
+        "side_b_state": {
+          "answer": "3",
+          "confidence": 0.6159569621086121,
+          "entropy": 1.4777339696884155,
+          "normalized_position": 0.8470588235294118
+        },
+        "n_a": 10,
+        "n_b": 10,
+        "track": "round2",
+        "file": "round2_level3_4-6.json"
+      },
+      {
+        "problem_id": "d3_prob5",
+        "a": [
+          "0",
+          "3",
+          "3",
+          "2",
+          "3",
+          "3",
+          "1",
+          "3",
+          "3",
+          "3"
+        ],
+        "b": [
+          "3",
+          "3",
+          "3",
+          "3",
+          "3",
+          "3",
+          "3",
+          "3",
+          "3",
+          "3"
+        ],
+        "observed_pdi": 0.16919485510105411,
+        "null_mean": 0.15592135992829548,
+        "state_distance": 0.866589783414567,
+        "side_a_state": {
+          "answer": "3",
+          "confidence": 0.6159569621086121,
+          "entropy": 1.4777339696884155,
+          "normalized_position": 0.8470588235294118
+        },
+        "side_b_state": {
+          "answer": "3",
+          "confidence": 0.837619960308075,
+          "entropy": 0.6399730443954468,
+          "normalized_position": 0.9322033898305084
+        },
+        "n_a": 10,
+        "n_b": 10,
+        "track": "round2",
+        "file": "round2_level3_4-6.json"
+      }
+    ]
+  },
+  "tost": {
+    "mean_excess_pdi": 0.009218990142483884,
+    "se_excess": 0.005644345119079432,
+    "margin_pdi": 0.002,
+    "margin_delta_accuracy": 0.02,
+    "p_lower": 0.025533067622322103,
+    "p_upper": 0.8972738509143081,
+    "p_tost": 0.8972738509143081,
+    "reject_equivalence": false
+  },
+  "accuracy_deltas": [
+    {
+      "problem_id": "d1_prob0",
+      "pdi": 0,
+      "error_rate_a": 0,
+      "error_rate_b": 0,
+      "accuracy_delta": 0
+    },
+    {
+      "problem_id": "d1_prob1",
+      "pdi": 0.0022636664497030375,
+      "error_rate_a": 0.25,
+      "error_rate_b": 0.3,
+      "accuracy_delta": 0.04999999999999999
+    },
+    {
+      "problem_id": "d1_prob1",
+      "pdi": 0.06100276392885592,
+      "error_rate_a": 0.25,
+      "error_rate_b": 0.05,
+      "accuracy_delta": 0.2
+    },
+    {
+      "problem_id": "d1_prob3",
+      "pdi": 0.12281454915819005,
+      "error_rate_a": 0.0,
+      "error_rate_b": 0.0,
+      "accuracy_delta": 0.0
+    },
+    {
+      "problem_id": "d1_prob3",
+      "pdi": 0,
+      "error_rate_a": 0,
+      "error_rate_b": 0,
+      "accuracy_delta": 0
+    },
+    {
+      "problem_id": "d1_prob3",
+      "pdi": 0,
+      "error_rate_a": 0,
+      "error_rate_b": 0,
+      "accuracy_delta": 0
+    },
+    {
+      "problem_id": "d1_prob5",
+      "pdi": 0,
+      "error_rate_a": 0,
+      "error_rate_b": 0,
+      "accuracy_delta": 0
+    },
+    {
+      "problem_id": "d2_prob0",
+      "pdi": 0,
+      "error_rate_a": 0,
+      "error_rate_b": 0,
+      "accuracy_delta": 0
+    },
+    {
+      "problem_id": "d2_prob1",
+      "pdi": 0.37289883921907563,
+      "error_rate_a": 0.825,
+      "error_rate_b": 0.15,
+      "accuracy_delta": 0.6749999999999999
+    },
+    {
+      "problem_id": "d2_prob1",
+      "pdi": 0.06550784501721567,
+      "error_rate_a": 0.125,
+      "error_rate_b": 0.0,
+      "accuracy_delta": 0.125
+    },
+    {
+      "problem_id": "d2_prob2",
+      "pdi": 0,
+      "error_rate_a": 0,
+      "error_rate_b": 0,
+      "accuracy_delta": 0
+    },
+    {
+      "problem_id": "d2_prob2",
+      "pdi": 0,
+      "error_rate_a": 0,
+      "error_rate_b": 0,
+      "accuracy_delta": 0
+    },
+    {
+      "problem_id": "d2_prob2",
+      "pdi": 0,
+      "error_rate_a": 0,
+      "error_rate_b": 0,
+      "accuracy_delta": 0
+    },
+    {
+      "problem_id": "d2_prob4",
+      "pdi": 0,
+      "error_rate_a": 0,
+      "error_rate_b": 0,
+      "accuracy_delta": 0
+    },
+    {
+      "problem_id": "d3_prob0",
+      "pdi": 0,
+      "error_rate_a": 0,
+      "error_rate_b": 0,
+      "accuracy_delta": 0
+    },
+    {
+      "problem_id": "d3_prob0",
+      "pdi": 0,
+      "error_rate_a": 0,
+      "error_rate_b": 0,
+      "accuracy_delta": 0
+    },
+    {
+      "problem_id": "d3_prob1",
+      "pdi": 0,
+      "error_rate_a": 0,
+      "error_rate_b": 0,
+      "accuracy_delta": 0
+    },
+    {
+      "problem_id": "d3_prob3",
+      "pdi": 0,
+      "error_rate_a": 0,
+      "error_rate_b": 0,
+      "accuracy_delta": 0
+    },
+    {
+      "problem_id": "d3_prob2",
+      "pdi": 0,
+      "error_rate_a": 0,
+      "error_rate_b": 0,
+      "accuracy_delta": 0
+    },
+    {
+      "problem_id": "d3_prob2",
+      "pdi": 0,
+      "error_rate_a": 0,
+      "error_rate_b": 0,
+      "accuracy_delta": 0
+    },
+    {
+      "problem_id": "d3_prob4",
+      "pdi": 0,
+      "error_rate_a": 0,
+      "error_rate_b": 0,
+      "accuracy_delta": 0
+    },
+    {
+      "problem_id": "d1_prob0",
+      "pdi": 0,
+      "error_rate_a": 0,
+      "error_rate_b": 0,
+      "accuracy_delta": 0
+    },
+    {
+      "problem_id": "d1_prob0",
+      "pdi": 0,
+      "error_rate_a": 0,
+      "error_rate_b": 0,
+      "accuracy_delta": 0
+    },
+    {
+      "problem_id": "d1_prob1",
+      "pdi": 0,
+      "error_rate_a": 0,
+      "error_rate_b": 0,
+      "accuracy_delta": 0
+    },
+    {
+      "problem_id": "d1_prob1",
+      "pdi": 0,
+      "error_rate_a": 0,
+      "error_rate_b": 0,
+      "accuracy_delta": 0
+    },
+    {
+      "problem_id": "d1_prob0",
+      "pdi": 0,
+      "error_rate_a": 0,
+      "error_rate_b": 0,
+      "accuracy_delta": 0
+    },
+    {
+      "problem_id": "d1_prob3",
+      "pdi": 0,
+      "error_rate_a": 0,
+      "error_rate_b": 0,
+      "accuracy_delta": 0
+    },
+    {
+      "problem_id": "d1_prob3",
+      "pdi": 0,
+      "error_rate_a": 0,
+      "error_rate_b": 0,
+      "accuracy_delta": 0
+    },
+    {
+      "problem_id": "d1_prob3",
+      "pdi": 0,
+      "error_rate_a": 0,
+      "error_rate_b": 0,
+      "accuracy_delta": 0
+    },
+    {
+      "problem_id": "d1_prob3",
+      "pdi": 0,
+      "error_rate_a": 0,
+      "error_rate_b": 0,
+      "accuracy_delta": 0
+    },
+    {
+      "problem_id": "d1_prob3",
+      "pdi": 0,
+      "error_rate_a": 0,
+      "error_rate_b": 0,
+      "accuracy_delta": 0
+    },
+    {
+      "problem_id": "d1_prob5",
+      "pdi": 0,
+      "error_rate_a": 0,
+      "error_rate_b": 0,
+      "accuracy_delta": 0
+    },
+    {
+      "problem_id": "d1_prob5",
+      "pdi": 0,
+      "error_rate_a": 0,
+      "error_rate_b": 0,
+      "accuracy_delta": 0
+    },
+    {
+      "problem_id": "d1_prob5",
+      "pdi": 0,
+      "error_rate_a": 0,
+      "error_rate_b": 0,
+      "accuracy_delta": 0
+    },
+    {
+      "problem_id": "d1_prob5",
+      "pdi": 0,
+      "error_rate_a": 0,
+      "error_rate_b": 0,
+      "accuracy_delta": 0
+    },
+    {
+      "problem_id": "d1_prob4",
+      "pdi": 0,
+      "error_rate_a": 0,
+      "error_rate_b": 0,
+      "accuracy_delta": 0
+    },
+    {
+      "problem_id": "d2_prob1",
+      "pdi": 0,
+      "error_rate_a": 0,
+      "error_rate_b": 0,
+      "accuracy_delta": 0
+    },
+    {
+      "problem_id": "d2_prob1",
+      "pdi": 0,
+      "error_rate_a": 0,
+      "error_rate_b": 0,
+      "accuracy_delta": 0
+    },
+    {
+      "problem_id": "d2_prob0",
+      "pdi": 0,
+      "error_rate_a": 0,
+      "error_rate_b": 0,
+      "accuracy_delta": 0
+    },
+    {
+      "problem_id": "d2_prob1",
+      "pdi": 0,
+      "error_rate_a": 0,
+      "error_rate_b": 0,
+      "accuracy_delta": 0
+    },
+    {
+      "problem_id": "d2_prob1",
+      "pdi": 0.1,
+      "error_rate_a": 0.1,
+      "error_rate_b": 0.1,
+      "accuracy_delta": 0.0
+    },
+    {
+      "problem_id": "d2_prob2",
+      "pdi": 0,
+      "error_rate_a": 0,
+      "error_rate_b": 0,
+      "accuracy_delta": 0
+    },
+    {
+      "problem_id": "d2_prob3",
+      "pdi": 0,
+      "error_rate_a": 0,
+      "error_rate_b": 0,
+      "accuracy_delta": 0
+    },
+    {
+      "problem_id": "d2_prob2",
+      "pdi": 0,
+      "error_rate_a": 0,
+      "error_rate_b": 0,
+      "accuracy_delta": 0
+    },
+    {
+      "problem_id": "d2_prob3",
+      "pdi": 0,
+      "error_rate_a": 0,
+      "error_rate_b": 0,
+      "accuracy_delta": 0
+    },
+    {
+      "problem_id": "d2_prob2",
+      "pdi": 0,
+      "error_rate_a": 0,
+      "error_rate_b": 0,
+      "accuracy_delta": 0
+    },
+    {
+      "problem_id": "d2_prob5",
+      "pdi": 0,
+      "error_rate_a": 0,
+      "error_rate_b": 0,
+      "accuracy_delta": 0
+    },
+    {
+      "problem_id": "d2_prob4",
+      "pdi": 0,
+      "error_rate_a": 0,
+      "error_rate_b": 0,
+      "accuracy_delta": 0
+    },
+    {
+      "problem_id": "d2_prob4",
+      "pdi": 0,
+      "error_rate_a": 0,
+      "error_rate_b": 0,
+      "accuracy_delta": 0
+    },
+    {
+      "problem_id": "d2_prob5",
+      "pdi": 0,
+      "error_rate_a": 0,
+      "error_rate_b": 0,
+      "accuracy_delta": 0
+    },
+    {
+      "problem_id": "d2_prob5",
+      "pdi": 0,
+      "error_rate_a": 0,
+      "error_rate_b": 0,
+      "accuracy_delta": 0
+    },
+    {
+      "problem_id": "d3_prob0",
+      "pdi": 0,
+      "error_rate_a": 0,
+      "error_rate_b": 0,
+      "accuracy_delta": 0
+    },
+    {
+      "problem_id": "d3_prob1",
+      "pdi": 0,
+      "error_rate_a": 0,
+      "error_rate_b": 0,
+      "accuracy_delta": 0
+    },
+    {
+      "problem_id": "d3_prob0",
+      "pdi": 0,
+      "error_rate_a": 0,
+      "error_rate_b": 0,
+      "accuracy_delta": 0
+    },
+    {
+      "problem_id": "d3_prob0",
+      "pdi": 0,
+      "error_rate_a": 0,
+      "error_rate_b": 0,
+      "accuracy_delta": 0
+    },
+    {
+      "problem_id": "d3_prob0",
+      "pdi": 0,
+      "error_rate_a": 0,
+      "error_rate_b": 0,
+      "accuracy_delta": 0
+    },
+    {
+      "problem_id": "d3_prob2",
+      "pdi": 0,
+      "error_rate_a": 0,
+      "error_rate_b": 0,
+      "accuracy_delta": 0
+    },
+    {
+      "problem_id": "d3_prob2",
+      "pdi": 0,
+      "error_rate_a": 0,
+      "error_rate_b": 0,
+      "accuracy_delta": 0
+    },
+    {
+      "problem_id": "d3_prob3",
+      "pdi": 0,
+      "error_rate_a": 0,
+      "error_rate_b": 0,
+      "accuracy_delta": 0
+    },
+    {
+      "problem_id": "d3_prob2",
+      "pdi": 0,
+      "error_rate_a": 0,
+      "error_rate_b": 0,
+      "accuracy_delta": 0
+    },
+    {
+      "problem_id": "d3_prob2",
+      "pdi": 0,
+      "error_rate_a": 0,
+      "error_rate_b": 0,
+      "accuracy_delta": 0
+    },
+    {
+      "problem_id": "d3_prob5",
+      "pdi": 0.19999999999999998,
+      "error_rate_a": 0.2,
+      "error_rate_b": 0.2,
+      "accuracy_delta": 0.0
+    },
+    {
+      "problem_id": "d3_prob5",
+      "pdi": 0.051899160321315606,
+      "error_rate_a": 0.1,
+      "error_rate_b": 0.0,
+      "accuracy_delta": 0.1
+    },
+    {
+      "problem_id": "d3_prob4",
+      "pdi": 0,
+      "error_rate_a": 0,
+      "error_rate_b": 0,
+      "accuracy_delta": 0
+    },
+    {
+      "problem_id": "d3_prob5",
+      "pdi": 0.10803154614560004,
+      "error_rate_a": 0.2,
+      "error_rate_b": 0.0,
+      "accuracy_delta": 0.2
+    },
+    {
+      "problem_id": "d3_prob5",
+      "pdi": 0.16919485510105411,
+      "error_rate_a": 0.3,
+      "error_rate_b": 0.0,
+      "accuracy_delta": 0.3
+    }
+  ],
+  "track_split": {
+    "all": {
+      "t_obs": 0.006207113948562035,
+      "null_mean": -0.00012682431796573912,
+      "null_std": 0.0008839842888766765,
+      "p_value": 0.0004997501249375312,
+      "n_pairs": 66,
+      "n_problems": 17
+    },
+    "round1": {
+      "t_obs": 0.019745498756625797,
+      "null_mean": -0.0003188801292463443,
+      "null_std": 0.001209043316398905,
+      "p_value": 0.0004997501249375312,
+      "n_pairs": 21,
+      "n_problems": 13
+    },
+    "round2": {
+      "t_obs": 0.0008442353521356162,
+      "null_mean": -6.649154645620987e-06,
+      "null_std": 0.000817284928016737,
+      "p_value": 0.14142928535732133,
+      "n_pairs": 45,
+      "n_problems": 17
+    }
+  }
+}

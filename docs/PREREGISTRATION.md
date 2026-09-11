@@ -530,3 +530,103 @@ more interesting result) that we could not fully rule out internally —
 the single most valuable next step is an independent replication with the
 problem-clustered test pre-registered from the start, not further
 reanalysis of these same 66 pairs.
+
+## 2026-09-12: track-split audit, excess-PDI correction, and the
+## reframe from "path dependence" to "answer-only insufficiency"
+
+Four independent external reviews of the 2026-09-11 draft, plus a fresh
+audit of `results/` run before acting on any of them, converged on the
+same core complaint from different angles: the paper's central claim
+outran what the data actually supported. Three audit findings, verified
+directly against the raw JSON (not inferred from the reviews), drove
+today's revision.
+
+**Finding A: the regression intercept argument was wrong.** Of the 45
+scale-up pairs, 7 sit at exactly zero state-distance (both sides matched
+on confidence and entropy too, not by design, just because both had
+already fully committed). All 7 show zero divergence. The previously
+reported intercept (0.0214, *p* = 0.086) was an upward extrapolation from
+points roughly half a state-unit away, not a measurement at the point it
+claimed to estimate. **Withdrawn.** Refitting on excess PDI (see below)
+with cluster-robust standard errors gives intercept 0.0022 (*p* = 0.38),
+consistent with the direct zero-distance measurement.
+
+**Finding B: the design's real ceiling.** Those same 7 pairs are the
+*only* pairs where true L3 (answer+confidence+entropy) matching was ever
+achieved, and they only got there because both sides had already fully
+decided (confidence 1.0, entropy 0.0). The design as executed cannot test
+sufficiency at an uncertain checkpoint, because it never produced a
+matched pair at one. Stated plainly in the paper's new §4.5 rather than
+left implicit.
+
+**Finding C: the "decisiveness gap" empties are probably censoring, not
+a parser bug.** Direct testing of `extract_boxed` confirms it parses
+closed non-numeric boxes correctly (`\boxed{\text{Evelyn}}` → `"evelyn"`)
+and returns `None` only on an *unclosed* box. An unclosed box at the
+1500-token branch cutoff is exactly what right-censoring looks like from
+saved answer strings alone. `d1_prob1` and `d2_prob1` (the decisiveness-
+gap problems) are both long-output problems; `d3_prob5` (the error-
+scatter problem) has zero empty answers in any of its 40 branches, so
+it's immune to this objection.
+
+**Statistical corrections applied to `scripts/final_analysis.py`** (new
+file, supersedes ad hoc analysis):
+- **Excess PDI**: every test now operates on `observed_pdi - null_mean`
+  per pair, not raw PDI. Raw PDI's plug-in estimator is biased upward at
+  *N*=10 for any non-unanimous pair, so it was never comparable to zero.
+- **Problem-level bootstrap** added alongside the pair-level clustered
+  test, because the pair-level test only licenses "these 66 pairs
+  genuinely differ," not "problems in general show this." Result: 95%
+  CI on mean excess PDI = [0.0011, 0.0106], excludes zero but should be
+  read cautiously given only 3 of 17 problems carry any signal.
+- **Track split**: pooled clustered test on excess PDI gives *p* = 0.0005.
+  Split by generation config: the 21-pair primary sample (top-*p* = 0.95)
+  alone gives *p* = 0.0005; the 45-pair scale-up (default top-*p*) alone
+  gives *p* = 0.14, not significant. The decisiveness gap lives entirely
+  in the first track. Error-scatter (`d3_prob5`) lives entirely in the
+  second. Reported as evidence, not hidden behind the pooled number.
+
+**Reframe**: from "history carries information beyond observable state"
+to "answer-only matching is insufficient, and confidence is doing
+measurable work that answer-only rules discard." `d3_prob5`'s pattern (3
+of 4 pairs: lower-confidence side scatters into errors, 10-30 point
+accuracy gap, immune to the censoring objection, robust across both
+generation configs) is now the paper's central, load-bearing result. The
+decisiveness gap is now reported as an **open question**, not a finding,
+pending the audit below.
+
+**Budget-corrected Tier 1 audit design**: an earlier cost estimate for a
+GPU audit ($20-30) was wrong by roughly 5x, extrapolated from a script
+docstring covering the whole pipeline rather than branching alone. Real
+measured cost (from this project's own `elapsed_s` data): ~$4 for a
+within-run L1-vs-L2 confidence contrast on `d3_prob5` (tests the new
+thesis directly), ~$3 for a censoring audit on `d1_prob1`/`d2_prob1`
+(generates once at 3000 tokens, records `boxed_close_token_index`, so one
+run yields the whole censoring curve instead of one run per candidate
+cutoff). Split into 5 small scripts per user request (`audit_smoke_test.py`
+plus 4 GPU phase scripts, trajectories separated from branching so a
+Phase B failure doesn't waste Phase A's spend) instead of 2 large ones.
+
+**A real bug found and fixed during the first diagnostic run**:
+`HFBackend.free_vram()` existed (docstring: "call between problems if
+fragmentation becomes an issue") but was never actually called anywhere
+in this project, including the original full-pilot script. `d3_prob5`
+alone did enough consecutive `forced_extract_with_scores` calls (56-94
+per trajectory, each retaining an `output_scores` tensor) to hit near-
+total VRAM exhaustion within 2 trajectories (59MB free out of 22GB),
+collapsing scoring quality from 14/56 to 4/94 on the second trajectory.
+Fixed by calling `free_vram()` after every trajectory and every branched
+pair, adding an OOM-retry wrapper (`empty_cache()` + one retry) around
+all three `model.generate()` call sites in `HFBackend`, and wrapping both
+the per-trajectory and per-pair loops in try/except so one bad step can't
+kill an unattended multi-hour run. Verified via `scripts/audit_smoke_test.py`
+(23/23 checks) and 134/134 unit tests before any GPU spend.
+
+**Status at time of writing**: both audit tracks (`modal_audit1a/1b` for
+the confidence contrast, `modal_audit2a/2b` for the censoring check)
+launched in parallel on the `bms-2024013` Modal profile, full run
+(*N*=10 trajectories, default branch counts), no diagnostic gate per
+explicit user instruction to proceed autonomously. Progressing cleanly,
+no OOM recurrence observed. Results pending; the paper's §4.6 and §6.3
+report the mechanism and the open question honestly rather than wait on
+this run to draft around.
