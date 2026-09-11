@@ -34,6 +34,18 @@ Early on, we combined all 66 pairs' individual test results using a standard sta
 
 Once we fixed that (details and code in `scripts/problem_clustered_permutation_test.py`), the picture flipped: there's a real, statistically robust effect, and it's concentrated in exactly 3 problems out of the 17 we tested. Two of them show the model deciding whether to commit to an answer or trail off unstated, depending on history. The third, more interesting one, shows the *lower-confidence* side of a matched pair scattering into different wrong answers while the higher-confidence side stays correct, something a system that only checks "does the current answer match" (as most early-stopping tools do) would never catch.
 
+<p align="center">
+  <img src="paper/figures/fig6_per_problem_pdi.png" width="75%">
+</p>
+
+Every bar is one of the 17 problems we tested. Fourteen of them (grey) never showed any disagreement at all, no matter how many times or how many ways we sampled them. Three (orange) are where all the signal lives.
+
+<p align="center">
+  <img src="paper/figures/fig7_d3prob5_confidence_error.png" width="80%">
+</p>
+
+This is the clearest look at the new mechanism, problem `d3_prob5`, a "find the smallest value of a" optimization problem. In 3 of its 4 tested pairs, whichever side had lower confidence at the matched checkpoint (left dot) is exactly the side that went on to give a wrong answer some of the time (right dot). The higher-confidence side never did. Confidence isn't part of what "answer-only" matching checks, so this is a real blind spot, not an artifact.
+
 We're upfront in the paper (Objection 4 in the Limitations section) that finding this after external review flagged the original method is itself a real methodological risk worth naming, and that the next real test of this claim is an independent replication, not more digging into the same 66 pairs.
 
 ## What's actually in this repository
