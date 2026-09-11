@@ -1,0 +1,10 @@
+# Phase 0 (laptop, no GPU): pure-logic modules only need these.
+datasets>=2.19
+pytest>=8.0
+scipy>=1.11  # early_stop/path_dependence.py: Jensen-Shannon divergence
+
+# Phase 1+ (GPU, rented or local): uncomment when running real generation.
+# torch>=2.3
+# transformers>=4.42
+# vllm>=0.5
+# accelerate>=0.30

@@ -1,0 +1,439 @@
+[
+  {
+    "problem_id": "phase4_d1_prob0",
+    "level": "1",
+    "n_scored_prefixes": 9,
+    "n_unparseable": 60,
+    "elapsed_s": 245.83759140968323,
+    "full_generation": {
+      "answer": "\\sqrt{51}",
+      "correct": true,
+      "fraction_of_trace_used": 1.0
+    },
+    "forced_extraction_0.5": {
+      "answer": "\\sqrt{51}",
+      "correct": true,
+      "fraction_of_trace_used": 0.8115942028985508
+    },
+    "sg_es": {
+      "answer": "\\sqrt{51}",
+      "correct": true,
+      "fraction_of_trace_used": 0.9420289855072463,
+      "triggered": true
+    }
+  },
+  {
+    "problem_id": "phase4_d1_prob3",
+    "level": "1",
+    "n_scored_prefixes": 4,
+    "n_unparseable": 13,
+    "elapsed_s": 47.089439153671265,
+    "full_generation": {
+      "answer": "2000",
+      "correct": true,
+      "fraction_of_trace_used": 1.0
+    },
+    "forced_extraction_0.5": {
+      "answer": "2000",
+      "correct": true,
+      "fraction_of_trace_used": 0.7647058823529411
+    },
+    "sg_es": {
+      "answer": "2000",
+      "correct": true,
+      "fraction_of_trace_used": 1.0,
+      "triggered": true
+    }
+  },
+  {
+    "problem_id": "phase4_d1_prob5",
+    "level": "1",
+    "n_scored_prefixes": 9,
+    "n_unparseable": 16,
+    "elapsed_s": 134.97488164901733,
+    "full_generation": {
+      "answer": "1",
+      "correct": true,
+      "fraction_of_trace_used": 1.0
+    },
+    "forced_extraction_0.5": {
+      "answer": "1",
+      "correct": true,
+      "fraction_of_trace_used": 0.64
+    },
+    "sg_es": {
+      "answer": "1",
+      "correct": true,
+      "fraction_of_trace_used": 0.76,
+      "triggered": true
+    }
+  },
+  {
+    "problem_id": "phase4_d2_prob0",
+    "level": "2",
+    "n_scored_prefixes": 8,
+    "n_unparseable": 10,
+    "elapsed_s": 77.79633283615112,
+    "full_generation": {
+      "answer": "(3\\pi/2)",
+      "correct": true,
+      "fraction_of_trace_used": 1.0
+    },
+    "forced_extraction_0.5": {
+      "answer": "(3\\pi/2)",
+      "correct": true,
+      "fraction_of_trace_used": 0.6111111111111112
+    },
+    "sg_es": {
+      "answer": "(3\\pi/2)",
+      "correct": true,
+      "fraction_of_trace_used": 0.7777777777777778,
+      "triggered": true
+    }
+  },
+  {
+    "problem_id": "phase4_d2_prob1",
+    "level": "2",
+    "n_scored_prefixes": 2,
+    "n_unparseable": 90,
+    "elapsed_s": 366.25400710105896,
+    "full_generation": {
+      "answer": "evelyn",
+      "correct": true,
+      "fraction_of_trace_used": 1.0
+    },
+    "forced_extraction_0.5": {
+      "answer": "evelyn",
+      "correct": true,
+      "fraction_of_trace_used": 0.9891304347826086
+    },
+    "sg_es": {
+      "answer": "evelyn",
+      "correct": true,
+      "fraction_of_trace_used": 1.0,
+      "triggered": false
+    }
+  },
+  {
+    "problem_id": "phase4_d2_prob2",
+    "level": "2",
+    "n_scored_prefixes": 8,
+    "n_unparseable": 12,
+    "elapsed_s": 88.24276161193848,
+    "full_generation": {
+      "answer": "42",
+      "correct": true,
+      "fraction_of_trace_used": 1.0
+    },
+    "forced_extraction_0.5": {
+      "answer": "42",
+      "correct": true,
+      "fraction_of_trace_used": 0.35
+    },
+    "sg_es": {
+      "answer": "42",
+      "correct": true,
+      "fraction_of_trace_used": 0.7,
+      "triggered": true
+    }
+  },
+  {
+    "problem_id": "phase4_d2_prob3",
+    "level": "2",
+    "n_scored_prefixes": 3,
+    "n_unparseable": 15,
+    "elapsed_s": 51.189931869506836,
+    "full_generation": {
+      "answer": "5",
+      "correct": true,
+      "fraction_of_trace_used": 1.0
+    },
+    "forced_extraction_0.5": {
+      "answer": "5",
+      "correct": true,
+      "fraction_of_trace_used": 0.8333333333333334
+    },
+    "sg_es": {
+      "answer": "5",
+      "correct": true,
+      "fraction_of_trace_used": 0.8888888888888888,
+      "triggered": true
+    }
+  },
+  {
+    "problem_id": "phase4_d2_prob4",
+    "level": "2",
+    "n_scored_prefixes": 13,
+    "n_unparseable": 22,
+    "elapsed_s": 137.53965044021606,
+    "full_generation": {
+      "answer": "78",
+      "correct": true,
+      "fraction_of_trace_used": 1.0
+    },
+    "forced_extraction_0.5": {
+      "answer": "78",
+      "correct": true,
+      "fraction_of_trace_used": 0.4857142857142857
+    },
+    "sg_es": {
+      "answer": "78",
+      "correct": true,
+      "fraction_of_trace_used": 0.7714285714285715,
+      "triggered": true
+    }
+  },
+  {
+    "problem_id": "phase4_d2_prob5",
+    "level": "2",
+    "n_scored_prefixes": 11,
+    "n_unparseable": 23,
+    "elapsed_s": 129.4140658378601,
+    "full_generation": {
+      "answer": "-2+7i",
+      "correct": true,
+      "fraction_of_trace_used": 1.0
+    },
+    "forced_extraction_0.5": {
+      "answer": "-2+7i",
+      "correct": true,
+      "fraction_of_trace_used": 0.6470588235294118
+    },
+    "sg_es": {
+      "answer": "-2+7i",
+      "correct": true,
+      "fraction_of_trace_used": 0.7941176470588235,
+      "triggered": true
+    }
+  },
+  {
+    "problem_id": "phase4_d3_prob0",
+    "level": "3",
+    "n_scored_prefixes": 8,
+    "n_unparseable": 35,
+    "elapsed_s": 155.85400485992432,
+    "full_generation": {
+      "answer": "14/3",
+      "correct": true,
+      "fraction_of_trace_used": 1.0
+    },
+    "forced_extraction_0.5": {
+      "answer": "14/3",
+      "correct": true,
+      "fraction_of_trace_used": 0.8372093023255814
+    },
+    "sg_es": {
+      "answer": "14/3",
+      "correct": true,
+      "fraction_of_trace_used": 0.8604651162790697,
+      "triggered": true
+    }
+  },
+  {
+    "problem_id": "phase4_d3_prob1",
+    "level": "3",
+    "n_scored_prefixes": 8,
+    "n_unparseable": 7,
+    "elapsed_s": 73.28808498382568,
+    "full_generation": {
+      "answer": "9",
+      "correct": true,
+      "fraction_of_trace_used": 1.0
+    },
+    "forced_extraction_0.5": {
+      "answer": "9",
+      "correct": true,
+      "fraction_of_trace_used": 0.4666666666666667
+    },
+    "sg_es": {
+      "answer": "9",
+      "correct": true,
+      "fraction_of_trace_used": 0.6666666666666666,
+      "triggered": true
+    }
+  },
+  {
+    "problem_id": "phase4_d3_prob2",
+    "level": "3",
+    "n_scored_prefixes": 13,
+    "n_unparseable": 28,
+    "elapsed_s": 175.9955449104309,
+    "full_generation": {
+      "answer": "27",
+      "correct": true,
+      "fraction_of_trace_used": 1.0
+    },
+    "forced_extraction_0.5": {
+      "answer": "27",
+      "correct": true,
+      "fraction_of_trace_used": 0.5365853658536586
+    },
+    "sg_es": {
+      "answer": "27",
+      "correct": true,
+      "fraction_of_trace_used": 0.7560975609756098,
+      "triggered": true
+    }
+  },
+  {
+    "problem_id": "phase4_d3_prob3",
+    "level": "3",
+    "n_scored_prefixes": 12,
+    "n_unparseable": 15,
+    "elapsed_s": 120.64576530456543,
+    "full_generation": {
+      "answer": "3\\sqrt{13}",
+      "correct": true,
+      "fraction_of_trace_used": 1.0
+    },
+    "forced_extraction_0.5": {
+      "answer": "3\\sqrt{13}",
+      "correct": true,
+      "fraction_of_trace_used": 0.4444444444444444
+    },
+    "sg_es": {
+      "answer": "3\\sqrt{13}",
+      "correct": true,
+      "fraction_of_trace_used": 0.5925925925925926,
+      "triggered": true
+    }
+  },
+  {
+    "problem_id": "phase4_d3_prob4",
+    "level": "3",
+    "n_scored_prefixes": 6,
+    "n_unparseable": 50,
+    "elapsed_s": 259.2858386039734,
+    "full_generation": {
+      "answer": "2220",
+      "correct": true,
+      "fraction_of_trace_used": 1.0
+    },
+    "forced_extraction_0.5": {
+      "answer": "2220",
+      "correct": true,
+      "fraction_of_trace_used": 0.9107142857142857
+    },
+    "sg_es": {
+      "answer": "2220",
+      "correct": true,
+      "fraction_of_trace_used": 0.9285714285714286,
+      "triggered": true
+    }
+  },
+  {
+    "problem_id": "phase4_d4_prob0",
+    "level": "4",
+    "n_scored_prefixes": 8,
+    "n_unparseable": 48,
+    "elapsed_s": 216.9097797870636,
+    "full_generation": {
+      "answer": "90",
+      "correct": false,
+      "fraction_of_trace_used": 1.0
+    },
+    "forced_extraction_0.5": {
+      "answer": "90",
+      "correct": false,
+      "fraction_of_trace_used": 0.875
+    },
+    "sg_es": {
+      "answer": "90",
+      "correct": false,
+      "fraction_of_trace_used": 0.9285714285714286,
+      "triggered": true
+    }
+  },
+  {
+    "problem_id": "phase4_d4_prob2",
+    "level": "4",
+    "n_scored_prefixes": 12,
+    "n_unparseable": 10,
+    "elapsed_s": 91.89378213882446,
+    "full_generation": {
+      "answer": "11\\sqrt{2}",
+      "correct": false,
+      "fraction_of_trace_used": 1.0
+    },
+    "forced_extraction_0.5": {
+      "answer": "11\\sqrt{2}",
+      "correct": false,
+      "fraction_of_trace_used": 0.5
+    },
+    "sg_es": {
+      "answer": "11\\sqrt{2}",
+      "correct": false,
+      "fraction_of_trace_used": 0.5454545454545454,
+      "triggered": true
+    }
+  },
+  {
+    "problem_id": "phase4_d4_prob3",
+    "level": "4",
+    "n_scored_prefixes": 6,
+    "n_unparseable": 24,
+    "elapsed_s": 128.570326089859,
+    "full_generation": {
+      "answer": "4320",
+      "correct": false,
+      "fraction_of_trace_used": 1.0
+    },
+    "forced_extraction_0.5": {
+      "answer": "4320",
+      "correct": false,
+      "fraction_of_trace_used": 0.8333333333333334
+    },
+    "sg_es": {
+      "answer": "4320",
+      "correct": false,
+      "fraction_of_trace_used": 0.8666666666666667,
+      "triggered": true
+    }
+  },
+  {
+    "problem_id": "phase4_d4_prob4",
+    "level": "4",
+    "n_scored_prefixes": 12,
+    "n_unparseable": 83,
+    "elapsed_s": 330.74478101730347,
+    "full_generation": {
+      "answer": "243/625",
+      "correct": true,
+      "fraction_of_trace_used": 1.0
+    },
+    "forced_extraction_0.5": {
+      "answer": "243/625",
+      "correct": true,
+      "fraction_of_trace_used": 0.8210526315789474
+    },
+    "sg_es": {
+      "answer": "243/625",
+      "correct": true,
+      "fraction_of_trace_used": 0.9157894736842105,
+      "triggered": true
+    }
+  },
+  {
+    "problem_id": "phase4_d4_prob5",
+    "level": "4",
+    "n_scored_prefixes": 18,
+    "n_unparseable": 37,
+    "elapsed_s": 194.77160906791687,
+    "full_generation": {
+      "answer": "-125",
+      "correct": true,
+      "fraction_of_trace_used": 1.0
+    },
+    "forced_extraction_0.5": {
+      "answer": "-125",
+      "correct": true,
+      "fraction_of_trace_used": 0.6909090909090909
+    },
+    "sg_es": {
+      "answer": "-125",
+      "correct": true,
+      "fraction_of_trace_used": 0.7454545454545455,
+      "triggered": true
+    }
+  }
+]
