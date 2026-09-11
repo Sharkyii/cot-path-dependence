@@ -425,3 +425,108 @@ Markovian assumption* was deliberately avoided in the paper text — a
 well-powered null across one model, one domain, and predominantly one
 matching level is evidence for sufficiency, not proof of it, and the
 paper says so explicitly (see PAPER_DRAFT.md §5.5).
+
+**2026-09-12 — the "robust null" reversed to "conditional sufficiency"
+after external review caught a real flaw in the aggregation method, not a
+data problem. Recorded here in full because it changes the paper's
+central claim, not just its framing.**
+
+External review of the draft (three independent critiques, one
+constructive, two adversarial) flagged that Fisher's method, used
+throughout this project to combine per-pair *p*-values into a single
+verdict, requires those *p*-values to be continuous and informative under
+the null. Checked directly: 56 of the 66 total collected pairs (21
+primary + 45 scale-up) are exactly degenerate — both sides' branches
+agree 100% of the time — which forces `pair_permutation_test()`'s
+permutation *p*-value to exactly 1.0 for every one of them, by
+construction (every resplit of two identical multisets is itself
+identical). This is not weak evidence for the null; it is a test with
+nothing left to measure at that pair. Pooling 56 such mass-point-at-1
+values with the 10 genuinely informative pairs via Fisher's method
+mechanically drags the combined statistic toward 1 regardless of what the
+10 informative pairs show. The pooled 66-pair Fisher combined *p* of
+0.9999996 (previously reported as strong evidence for the null) is
+substantially an artifact of this mechanism.
+
+**Fix**: built `scripts/problem_clustered_permutation_test.py`, a single
+global permutation test on continuous PDI values (never discretized into
+per-pair significance calls, so immune to the degenerate-*p* problem),
+statistic = mean of each problem's own mean PDI (equal weight per
+problem, not per pair, correcting the pseudoreplication risk already
+flagged in the 2026-09-11 amendment — 17 distinct problems collectively
+contributed the 66 pairs, with some problems sampled up to 6 times). Null
+built by independently resplitting every pair's own pooled branches (same
+procedure as the existing per-pair test) across 20,000 replicates.
+
+**Result: observed statistic 0.0149, null mean 0.0087, *p* = 0.00005** (0
+of 20,000 replicates reached the observed value). Verified against three
+alternative specifications before trusting it: a naive pair-weighted
+statistic with no problem-clustering (*p* = 0.00005, unchanged), excluding
+`d3_prob5` — the newest, least-scrutinized anomalous problem — entirely
+(*p* = 0.00005, unchanged), and normalizing all raw answers through
+`normalize_math_answer()` first, removing the known `"2000"` vs.
+`"2000calories"` artifact (*p* = 0.00005, unchanged, and `d1_prob3`'s
+contribution correctly drops to zero once normalized). The result is not
+an artifact of pair-weighting, the newest data point, or the previously
+known extraction bug.
+
+**Where the signal lives**: broken down per problem, 14 of 17 tested
+problems show PDI = 0 in every single sampled pair. All aggregate
+significance comes from `d1_prob1` (4 pairs, mean 0.016), `d2_prob1` (6
+pairs, mean 0.090), and `d3_prob5` (4 pairs, mean 0.132, every pair
+nonzero — a problem never previously written up in the paper, only
+noticed live in Modal logs during the 2026-09-11 scale-up run).
+`d3_prob5`'s raw branch data (pulled and inspected in full, not just
+skimmed) shows a pattern distinct from `d1_prob1`/`d2_prob1`'s
+already-documented decisiveness gap: not empty-vs-stated, but
+correct-vs.-scattered-into-different-wrong-answers, and in 3 of its 4
+pairs, specifically the *lower-confidence* side of the L1-matched pair is
+the one that scatters. This is 3 directionally-consistent observations
+within one problem, not 3 independent replications — reported in the
+paper as a hypothesis, not a finding.
+
+**Also discovered in the same investigation**: MATH-500 subject tags for
+all 17 tested problems show both "Intermediate Algebra" problems
+(`d1_prob1`, `d3_prob5`) are anomalous, against zero of the other 15
+problems across 5 other subjects. *n* = 2 in the relevant cell, reported
+as a small-sample hypothesis (§5.3 of the paper), not a statistical claim.
+A second likely extraction artifact was also caught in the same pass: one
+`d2_prob1` scale-up pair shows side B answering `"e"` where side A and the
+rest of the branches say `"evelyn"` — almost certainly a truncated
+extraction, not a genuine competing answer, the same class of bug as the
+already-known `"2000calories"` case, just truncation instead of a unit
+suffix.
+
+**Second correction, same investigation**: the continuous state-distance
+regression's *slope* (does divergence grow with distance?) is not the
+quantity H1 concerns — H1 is about divergence *at* matched state, the
+regression's *intercept*. Recomputed: intercept = 0.0214 (SE 0.0122, 95%
+CI [-0.003, 0.046]), *p* = 0.086, versus the previously-reported slope
+*p* = 0.47. The intercept does not cross 0.05 on its own but sits closer
+to it than the slope-only framing implied, and is directionally
+consistent with the corrected aggregate test rather than in tension with
+it. Standardizing confidence/entropy before combining into the distance
+metric (addressing a separate, valid external-review point about
+unscaled dimensions) gives intercept 0.0207, *p* = 0.12 — materially
+unchanged, so the unscaled-metric critique, while fair to raise, does not
+itself explain the finding.
+
+**Decision**: reframe the paper from a strict null ("no evidence of path
+dependence") to **conditional sufficiency**: observable state is
+sufficient for the large majority of matched checkpoints, but path
+dependence is real, aggregate-significant, and concentrated in a
+structurally identifiable minority (§4.6 of the paper). This is reported
+as a stronger, more interesting result than either the original clean
+null or an unexplained anomaly, per direct user instruction after
+reviewing the corrected analysis, not a unilateral framing choice made
+without sign-off. Full staged rewrite (abstract, introduction, Method
+§3.8, Results §4.1-§4.7, Discussion §5.3, Limitations §6.3-§6.4,
+Objections 1-3 updated and a new Objection 4 added addressing the
+post-hoc-analysis concern directly) applied the same day. The paper's own
+Objection 4 is the most important addition to flag here: this correction
+was found by building a new test *after* external review, on the same
+data, which is a real methodological risk (motivated reasoning toward a
+more interesting result) that we could not fully rule out internally —
+the single most valuable next step is an independent replication with the
+problem-clustered test pre-registered from the start, not further
+reanalysis of these same 66 pairs.
