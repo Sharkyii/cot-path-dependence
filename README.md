@@ -15,7 +15,7 @@ Three problems looked like exceptions at various points in this project. We chas
 - Two problems (`d1_prob1`, `d2_prob1`) showed a "decisiveness gap": one side of a matched pair would state a clean answer, the other would trail off with no boxed answer at all. This signal only showed up under one specific decoding setting (top-p = 0.95) and vanished under another (default top-p) run on the same problems, which is evidence about sampling configuration, not about history. A follow-up audit at the correct configuration found the mechanism is real, one fresh branch out of 320 was empty at the original 1500-token cutoff and closed by 3000, but nowhere near common enough to explain the original 5.8% empty rate. Most of that gap did not reproduce.
 - The third (`d3_prob5`) looked like the cleanest finding in the whole dataset: the lower-confidence side of a matched pair tended to answer wrong later, a 10-30 percentage point gap. It didn't survive two checks. First, a direct follow-up test showed the gap persists even when confidence *is* matched, and reverses direction as often as not when it isn't, so confidence doesn't explain it. Second, and more decisively: the four "independent" pairs turned out to be three prefix pairings built from four prefixes, one pairing counted twice, and one single prefix resampled against itself, with no difference in history whatsoever, reproduced the entire claimed effect (0%, 10%, and 30% error across three independent branch sets). The effect is inside the noise of one prefix resampled against itself.
 
-So the honest finding is the plain one: **observable state (the current answer, confidence, and entropy) is sufficient for early-stopping decisions on this model and this dataset. Three apparent exceptions turned up along the way, and every one of them, examined directly, turned out not to be real.** We'd rather report that, and show the three times we almost believed otherwise, than the more exciting, less true version.
+So the finding is the plain one: **observable state (the current answer, confidence, and entropy) is sufficient for early-stopping decisions on this model and this dataset. Three problems looked like exceptions along the way; none of them are.**
 
 ## A picture is worth it
 
@@ -35,7 +35,7 @@ Each dot is one tested pair. The x-axis is how differently two moments "felt" (c
   <img src="paper/figures/fig7_d3prob5_confidence_error.png" width="80%">
 </p>
 
-This is the original pattern in `d3_prob5`, the problem where confidence looked like a clean explanation, before follow-up testing found it inside the noise of a single prefix resampled against itself (see below). In 3 of these 4 original pairs, the lower-confidence side (left dot) is the one that later gave a wrong answer (right dot). We're keeping this figure because it's honest history, this is what we saw first and what motivated the follow-up test, not because we still think it's evidence of anything.
+This is the original pattern in `d3_prob5`, the problem where confidence looked like a clean explanation, before follow-up testing found it inside the noise of a single prefix resampled against itself (see below). In 3 of these 4 original pairs, the lower-confidence side (left dot) is the one that later gave a wrong answer (right dot). We include this figure because it's what motivated the follow-up test described below, not because it's evidence of anything on its own.
 
 ## What actually happened, told straight
 
