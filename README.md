@@ -1,34 +1,29 @@
 # Does checking the current answer alone tell you enough to stop early?
 
-When a large language model works through a math problem step by step, a lot of people are building tools that try to stop it early, the moment it looks like it has already decided the answer. This saves time and money. Most of these tools check one thing: has the current answer stopped changing? A few also check confidence. But almost none of them ask whether confidence is actually doing anything once the answer has stabilized, or whether checking the answer alone was already good enough.
-
-We tested that directly.
+When a large language model works through a math problem step by step, a lot of people are building tools that try to stop it early, the moment it looks like it has already decided the answer. This saves time and money. Most of these tools check one thing: has the current answer stopped changing? A few also check confidence. We tested whether checking the answer alone is actually enough, and along the way we proposed two specific explanations for the cases where it isn't, then tested both explanations directly. Neither one survived the test cleanly. We think that's the most useful part of this project, and we're leading with it rather than burying it.
 
 ## The short version
 
-We took a reasoning model (DeepSeek-R1-Distill-Qwen-7B), gave it math problems, and found many pairs of moments where two *different* reasoning attempts had landed on the exact same answer at the exact same point in their reasoning, but with different confidence levels, since we only matched on the answer itself. Same answer, different confidence, different history.
+We took a reasoning model (DeepSeek-R1-Distill-Qwen-7B), gave it math problems, and found many pairs of moments where two *different* reasoning attempts had landed on the exact same answer at the exact same point in their reasoning, matched on the answer alone. Same answer, different history, sometimes different confidence.
 
 Then we let each of those moments continue naturally, many times over, and checked what happened next.
 
-**Across 66 tested pairs and 17 distinct problems, checking the answer alone was enough almost everywhere.** 14 of 17 problems agreed every single time, no matter which history got them there. But in one problem, a clean and repeatable pattern showed up: whichever side of a matched pair had **lower confidence**, even though both sides currently stated the same answer, was the side that went on to give a wrong answer 10 to 30% of the time. The higher-confidence side almost never did.
+**Across 66 tested pairs and 17 distinct problems, checking the answer alone was enough almost everywhere.** 14 of 17 problems agreed every single time, no matter which history got them there. A handful of pairs also happened to match on confidence too, not by design, just because both sides had already fully committed, and every one of those showed perfect agreement as well. That part of the finding is solid and we stand behind it fully.
 
-That is the actual finding. Not "history secretly matters." Something much more useful for anyone building a stopping rule: **the answer alone can lie about how safe a checkpoint is, and confidence, a number these tools already compute, catches it.**
+Divergence showed up in exactly 3 problems. We noticed two candidate patterns in that divergence and, being suspicious of our own first read, we went and ran direct follow-up tests on both before writing this up as a finished result. **Both follow-ups complicated the story instead of confirming it.**
 
-A second pattern, in two other problems, looked at first like the same kind of thing (history predicting whether the model states an answer at all, or trails off). We're not confident that one is real. It only shows up under one of our two generation settings, and it might just be that those two problems needed more tokens than we gave them per branch. We say so plainly below rather than quietly picking the more exciting result.
+- One pattern looked like the model simply not committing to an answer at all in certain histories. Our follow-up ruled out one boring explanation (running out of token budget) under the setting we tested, but we made a real mistake, our own test accidentally ran under a different generation setting than the one that actually produced the effect, so it doesn't settle the question either way. Open, not resolved. Full story below.
+- The other pattern looked cleaner: in one problem, the side of a matched pair with lower confidence tended to give a wrong answer later, while the higher-confidence side didn't. We designed a direct follow-up test on fresh data from the same problem to check whether confidence really explained it. It didn't hold up: divergence still happened even when confidence *was* matched, and when it happened without confidence matching, it went in the wrong direction as often as the right one. The underlying divergence is real and keeps showing up, but our explanation for it doesn't survive scrutiny.
+
+So the honest finding is narrower than either of the two more exciting stories we tried to tell along the way: **the answer alone is enough almost everywhere, real exceptions exist in a small number of problems, and we do not yet know what explains those exceptions.** We'd rather report that than the more flattering, less true version.
 
 ## A picture is worth it
-
-<p align="center">
-  <img src="paper/figures/fig7_d3prob5_confidence_error.png" width="80%">
-</p>
-
-This is the clearest look at the real finding, one problem ("find the smallest value of a" for a cubic equation) where confidence, not history, explains what happens next. In 3 of its 4 tested pairs, whichever side had lower confidence at the matched checkpoint (left dot) is exactly the side that went on to give a wrong answer some of the time (right dot). The higher-confidence side never did. Confidence isn't part of what "answer-only" matching checks, so this is a real blind spot in that kind of rule, not an artifact of how we set up the test.
 
 <p align="center">
   <img src="paper/figures/fig6_per_problem_pdi.png" width="75%">
 </p>
 
-Every bar is one of the 17 problems we tested. Fourteen of them (grey) never showed any disagreement at all, no matter how many times or how many ways we sampled them. Three (orange) are where all the signal lives, and as explained above, only one of those three is a result we currently stand behind without reservation.
+Every bar is one of the 17 problems we tested. Fourteen of them (grey) never showed any disagreement at all, no matter how many times or how many ways we sampled them. Three (orange) are where all the signal lives. As the text above explains, follow-up testing complicated the story behind all three of them, not just two.
 
 <p align="center">
   <img src="paper/figures/fig4_continuous_regression.png" width="55%">
@@ -36,13 +31,17 @@ Every bar is one of the 17 problems we tested. Fourteen of them (grey) never sho
 
 Each dot is one tested pair. The x-axis is how differently two moments "felt" (confidence and uncertainty combined). The y-axis is how much their eventual answers actually diverged, corrected for a statistical bias in the raw measurement (see below). The diamond points sit at true zero distance, meaning both sides matched on confidence too, not by design, just because both had already fully committed. Every single one of those diamonds shows zero divergence. That is the most direct evidence in this whole project: when the observable state is genuinely, fully matched, the future is not up for grabs.
 
+<p align="center">
+  <img src="paper/figures/fig7_d3prob5_confidence_error.png" width="80%">
+</p>
+
+This is the original pattern in the one problem where confidence looked like the explanation, before the follow-up test complicated it (see below). In 3 of these 4 original pairs, the lower-confidence side (left dot) is the one that later gave a wrong answer (right dot). We're keeping this figure because it's honest history, this is what we saw first and what motivated the follow-up test, not because we still think it's the full story.
+
 ## What actually happened, told straight
 
-Early on, we combined all 66 pairs' individual test results using a standard statistical tool (Fisher's method) and got a strong "no effect" verdict. That tool turned out to be the wrong one for this data: 56 of the 66 pairs were cases where both sides agreed 100% of the time, which makes that pair's individual test mathematically return "no signal detected" no matter what. Averaging those in with the pairs that did show disagreement quietly buried the real signal.
+Early on, we combined all 66 pairs' individual test results using a standard statistical tool (Fisher's method) and got a strong "no effect" verdict. That tool turned out to be the wrong one for this data: 56 of the 66 pairs were cases where both sides agreed 100% of the time, which makes that pair's individual test mathematically return "no signal detected" no matter what. Averaging those in with the pairs that did show disagreement quietly buried the real signal. Once we fixed that, a real effect showed up, concentrated in exactly 3 problems out of 17.
 
-Once we fixed that, a real effect showed up, concentrated in exactly 3 problems out of 17. But fixing that bug also meant looking harder at where the effect actually was, and that's when we found something we want to be upfront about: two of the three anomalous problems have a specific vulnerability. They're both long-output problems (a 100-term sum, a free-text answer), and our branches were capped at 1500 tokens. It's entirely possible some of those "the model trailed off without answering" cases were really "the model needed more tokens and we cut it off." We designed a test for this (generate longer, see if the gap closes) and it's either running or already run by the time you're reading this, see `docs/PREREGISTRATION.md` for the dated result.
-
-The third problem, the confidence one shown above, has no such vulnerability. It has zero empty answers on either side in all four tested pairs, so there's nothing to censor. That's why we lead with it.
+We then designed and ran direct follow-up tests on the two mechanisms we proposed for that effect, rather than stop at the first read. Both follow-ups are described in full in `docs/PREREGISTRATION.md`, dated the night they ran. Short version: for two of the three problems, we couldn't rule out that the model simply needed more tokens than we gave it, and our own follow-up test (meant to check this) ran under the wrong generation settings by mistake, so it's still an open question. For the third problem, where confidence looked like a clean explanation, a follow-up on fresh trajectories from the same problem showed divergence still happening even when confidence *was* matched, and going the "wrong" direction just as often as the "right" one when it wasn't. The divergence itself is real and repeatable. Our explanation for it isn't.
 
 ## What's actually in this repository
 

@@ -627,6 +627,89 @@ the confidence contrast, `modal_audit2a/2b` for the censoring check)
 launched in parallel on the `bms-2024013` Modal profile, full run
 (*N*=10 trajectories, default branch counts), no diagnostic gate per
 explicit user instruction to proceed autonomously. Progressing cleanly,
-no OOM recurrence observed. Results pending; the paper's §4.6 and §6.3
-report the mechanism and the open question honestly rather than wait on
-this run to draft around.
+no OOM recurrence observed.
+
+**Track 2 (censoring audit) completed.** Result: across 160 fresh
+branches (`d1_prob1` and `d2_prob1`, 2 pairs each, both sides, 40
+branches each, 3000-token budget), every single branch terminated by
+genuine `finish_reason="eos"`, none hit the doubled token cap, and every
+branch on both sides converged to the identical answer regardless of how
+far apart the matched checkpoint's confidence was (one pair matched
+confidence 0.811 against 0.102, both sides still converged 40/40; see
+`results/candidate_b_audit_censoring/results.json` for the raw
+telemetry). This directly rules out token-budget censoring **under the
+configuration actually tested**.
+
+It does not, however, settle the question the audit was designed to
+settle. A real mistake, caught only after the run: `modal_audit2a/2b`
+reused `HFBackend` as-is, which does not pin `top_p`, so the audit ran
+under the scale-up track's generation configuration, not the primary
+sample's `top_p=0.95`. The result therefore exactly reproduces the
+original scale-up's finding of zero empty answers under this
+configuration (consistent with, not independent of, what the paper
+already reported), and it additionally rules out "these two problems
+generically need more tokens regardless of configuration." It does NOT
+test whether censoring explains the gap specifically at `top_p=0.95`,
+because that run was never performed. The correctly-configured audit
+(pin `top_p=0.95`, keep the doubled token budget) remains the concrete
+next step, not a repeat of what was just run. Reported in the paper (new
+Abstract sentence, §4.6 Mechanism 1, §6.3, Objection 5) exactly this way,
+including the mistake, rather than either overclaiming resolution or
+silently rerunning until the "right" test happened to get done. The
+decisiveness gap's most likely explanation is now the sampling
+configuration itself (`top_p=0.95` vs default), not token-budget
+censoring and not a genuine history/path-dependence effect, but this is
+not yet directly confirmed.
+
+**Track 1 (L1-vs-L2 confidence contrast on `d3_prob5`) completed. Result:
+the confidence explanation does NOT survive this direct test.** 4 new L1
+pairs + 4 new L2 pairs, drawn from 10 fresh `d3_prob5` trajectories, both
+conditions from one shared generation run (see
+`results/candidate_b_audit_l1_l2_d3_prob5/results.json` for raw data).
+
+- 6 of 8 new pairs: exactly zero divergence.
+- The one L2 pair that diverges (confidence 0.426 vs 0.493, a 0.067 gap,
+  well within the 0.10 L2 tolerance) still shows real divergence
+  (PDI=0.169, one side 14/20 correct vs the other's unanimous 20/20).
+  Confidence WAS matched here and the gap did NOT close.
+- The one L1 pair that diverges (PDI=0.138) shows the OPPOSITE direction
+  from the original 3-of-4 pattern: the HIGHER-confidence side (0.731)
+  scatters (15/20 correct), the LOWER-confidence side (0.146) is
+  unanimous.
+
+This is a genuine, important complication, not a minor caveat. The
+original finding (3 of 4 pairs: lower-confidence side scatters) does not
+replicate directionally on fresh sampling, and the divergence rate itself
+dropped sharply (4/4 original vs 2/8 new), consistent with the original
+being a small-sample draw that regression to the mean would predict a
+follow-up to soften.
+
+What DOES survive: `d3_prob5` keeps producing nonzero PDI across two
+independent samples (original 4 pairs, all nonzero; new 8 pairs, 2
+nonzero) -- this problem genuinely diverges under natural branching more
+than the other 16 tested problems. What does NOT survive: the specific
+claim that confidence explains WHY. That claim was this paper's central,
+best-supported result as of the reframe earlier tonight. It no longer is.
+
+**Decision, made the same night the result came in, not deferred to a
+later revision**: rewrite the Abstract, Introduction, and relevant
+Results/Limitations sections (again) to report this honestly. The new
+headline is no longer "answer-only matching is insufficient, it's
+confidence" -- it is closer to the original framing this project spent
+all of yesterday moving away from: "observable state is sufficient for
+the large majority of matched checkpoints, real divergence exists in a
+small minority, and our best attempts to mechanistically explain that
+minority (censoring for the decisiveness gap, confidence for the
+error-scatter pattern) did not hold up under direct testing." Both of
+tonight's audits, run specifically to CONFIRM the paper's two proposed
+mechanisms, instead complicated or reversed them. We are treating this
+as the correct outcome of doing the audits properly, not as a setback to
+paper over. The alternative, keeping the more exciting pre-audit framing
+and quietly not mentioning what the audits actually found, was
+considered and rejected outright.
+
+Full paper updated (Abstract, Intro, §4.6, Objection 5, Contributions)
+in both `PAPER_DRAFT.md` (not in this repo, lives in the parent research
+directory) and `paper/latex/main.tex`. Structural LaTeX checks
+(balanced braces/environments, all refs resolve, no em-dash/semicolon
+violations) re-verified clean after this rewrite.
