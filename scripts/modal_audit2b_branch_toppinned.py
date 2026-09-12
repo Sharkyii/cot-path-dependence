@@ -190,13 +190,18 @@ def run_phase_b_one_problem(problem_id: str, n_branches: int, max_pairs_per_prob
 
 
 @app.local_entrypoint()
-def main(n_branches: int = N_BRANCHES_PER_PAIR, max_pairs_per_problem: int = MAX_PAIRS_PER_PROBLEM):
+def main(n_branches: int = N_BRANCHES_PER_PAIR, max_pairs_per_problem: int = MAX_PAIRS_PER_PROBLEM,
+         problem_ids: str = ""):
+    """problem_ids: comma-separated subset of TARGET_PROBLEM_IDS to run (default: both).
+    Added to let a dropped/incomplete problem be rerun alone without re-paying for
+    a problem that already finished -- e.g. --problem-ids d2_prob1."""
+    target_ids = [p.strip() for p in problem_ids.split(",") if p.strip()] or TARGET_PROBLEM_IDS
     print(f"Audit 2, Phase B (top_p=0.95 pinned): n_branches={n_branches}, "
-          f"max_pairs_per_problem={max_pairs_per_problem}, both problems in TRUE PARALLEL")
+          f"max_pairs_per_problem={max_pairs_per_problem}, problems={target_ids}, TRUE PARALLEL")
     if n_branches >= N_BRANCHES_PER_PAIR:
         print("This is the FULL run. If you haven't run the cheap diagnostic yet "
               "(--n-branches 4 --max-pairs-per-problem 1), consider Ctrl+C and doing that first.\n")
-    args = [(pid, n_branches, max_pairs_per_problem) for pid in TARGET_PROBLEM_IDS]
+    args = [(pid, n_branches, max_pairs_per_problem) for pid in target_ids]
     results = list(run_phase_b_one_problem.starmap(args))
     print(f"\nDone: {results}")
     print("Pull results: modal volume get candidate-b-results "
