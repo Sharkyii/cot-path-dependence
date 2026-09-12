@@ -8,6 +8,7 @@ than letting device_map='auto' silently offload to CPU at ~2 tok/s.
 from early_stop.backend import (
     DEEPSEEK_R1_DISTILL_QWEN_7B_PARAMS_B,
     GPUInfo,
+    HFBackend,
     estimate_weight_gb,
     recommend_precision,
 )
@@ -76,3 +77,36 @@ def test_headroom_is_actually_reserved():
     weights = estimate_weight_gb(DEEPSEEK_R1_DISTILL_QWEN_7B_PARAMS_B, "fp16")
     just_barely = _gpu(weights + 0.5, bf16=False)
     assert recommend_precision(DEEPSEEK_R1_DISTILL_QWEN_7B_PARAMS_B, just_barely, kv_cache_headroom_gb=3.0) != "fp16"
+
+
+def _bare_backend(temperature: float, top_p: float | None) -> HFBackend:
+    """Builds an HFBackend instance WITHOUT running __init__ (no torch/
+    transformers import, no model load) -- just enough state set directly
+    to test _sampling_kwargs()'s pure logic. See that method's docstring
+    (2026-09-13, REVISION_PLAN.md Tier 1.3 rerun): it must include top_p
+    in the kwargs it returns only when top_p was actually set, so every
+    caller that never passes top_p keeps getting the model's own default
+    behavior unchanged."""
+    backend = object.__new__(HFBackend)
+    backend.temperature = temperature
+    backend.top_p = top_p
+    return backend
+
+
+def test_sampling_kwargs_omits_top_p_when_unset():
+    # The default (top_p=None) -- every existing caller of HFBackend that
+    # doesn't pass top_p must see IDENTICAL generate() kwargs to before
+    # this parameter was added, or their results would silently stop
+    # being comparable to earlier runs.
+    kwargs = _bare_backend(temperature=0.6, top_p=None)._sampling_kwargs()
+    assert kwargs == {"do_sample": True, "temperature": 0.6}
+    assert "top_p" not in kwargs
+
+
+def test_sampling_kwargs_includes_top_p_when_set():
+    # The fix this test guards: modal_audit2a/2b_toppinned.py pass
+    # top_p=0.95 to match the primary sample's real configuration, after
+    # the first audit run silently tested the wrong one because this
+    # parameter didn't exist yet.
+    kwargs = _bare_backend(temperature=0.6, top_p=0.95)._sampling_kwargs()
+    assert kwargs == {"do_sample": True, "temperature": 0.6, "top_p": 0.95}

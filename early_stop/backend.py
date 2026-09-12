@@ -129,7 +129,31 @@ class HFBackend:
         param_count_b: float = 7.0,
         allow_cpu_offload: bool = False,
         max_memory: dict | None = None,
+        top_p: float | None = None,
     ):
+        """top_p: nucleus sampling cutoff, applied to every generate() call
+        this backend makes (trajectories, forced-extraction scoring, AND
+        branching) if set. Defaults to None, meaning "don't pass top_p to
+        generate() at all" -- the model's own generation_config default
+        applies, exactly the prior behavior, so every existing caller of
+        HFBackend is unaffected unless it opts in.
+
+        Added 2026-09-13 (REVISION_PLAN.md Tier 1.3 rerun): the original
+        primary 21-pair sample was collected via a SEPARATE Kaggle
+        pipeline that pinned top_p=0.95 in its own GenerationConfig,
+        entirely independent of this class. Every Modal-based collection
+        that used THIS class (the 45-pair scale-up, and the first version
+        of the censoring audit in modal_audit2a/2b) never had a way to
+        pin top_p at all, so they silently ran at the model's default
+        instead -- discovered only after that audit's result turned out
+        to reproduce the scale-up's configuration rather than test the
+        primary sample's, an implementation error documented in full in
+        the paper's Limitations section. This parameter exists so that
+        mistake cannot recur silently: any caller that needs to match the
+        primary sample's exact configuration must now pass top_p=0.95
+        explicitly, rather than discover after the fact that there was
+        never a hook for it.
+        """
         torch = _torch()
         from transformers import AutoModelForCausalLM, AutoTokenizer
 
@@ -138,6 +162,7 @@ class HFBackend:
 
         self.torch = torch
         self.temperature = temperature
+        self.top_p = top_p
         self.gpu = probe_gpu()
         print(f"[backend] {self.gpu.summary()}")
 
@@ -217,6 +242,17 @@ class HFBackend:
     def device(self):
         return self.model.device
 
+    def _sampling_kwargs(self) -> dict:
+        """do_sample/temperature (always) plus top_p (only if set at
+        construction) -- splatted into every generate() call this class
+        makes, so top_p pinning applies uniformly to trajectory
+        generation, forced-extraction scoring, and branching alike. See
+        __init__'s top_p docstring for why this exists."""
+        kwargs = {"do_sample": True, "temperature": self.temperature}
+        if self.top_p is not None:
+            kwargs["top_p"] = self.top_p
+        return kwargs
+
     def _generate_retrying_oom(self, generate_call):
         """Runs the zero-arg callable `generate_call` (a closure wrapping
         one self.model.generate(...) invocation, kept as a callable rather
@@ -258,8 +294,7 @@ class HFBackend:
                 input_ids,
                 attention_mask=self.torch.ones_like(input_ids),
                 max_new_tokens=max_new_tokens,
-                do_sample=True,
-                temperature=self.temperature,
+                **self._sampling_kwargs(),
                 pad_token_id=self.tokenizer.eos_token_id,
                 use_cache=True,
             ))
@@ -342,8 +377,7 @@ class HFBackend:
                 input_ids,
                 attention_mask=self.torch.ones_like(input_ids),
                 max_new_tokens=max_new_tokens,
-                do_sample=True,
-                temperature=self.temperature,
+                **self._sampling_kwargs(),
                 pad_token_id=self.tokenizer.eos_token_id,
                 use_cache=True,
                 return_dict_in_generate=True,
@@ -409,8 +443,7 @@ class HFBackend:
                 input_ids,
                 attention_mask=self.torch.ones_like(input_ids),
                 max_new_tokens=max_new_tokens,
-                do_sample=True,
-                temperature=self.temperature,
+                **self._sampling_kwargs(),
                 pad_token_id=self.tokenizer.eos_token_id,
                 use_cache=True,
                 output_scores=True,

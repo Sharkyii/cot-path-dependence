@@ -1,26 +1,42 @@
 """
-AUDIT 2, PHASE A (REVISION_PLAN.md Tier 1.3, SECONDARY -- run after audit 1
-if budget remains) -- trajectory generation only, for d1_prob1 AND
-d2_prob1, run in TRUE PARALLEL (two containers via .starmap) so wall-clock
-time is roughly halved. Same split rationale as audit 1: this phase is
-cheap, so if Phase B (the expensive branching phase) fails, you haven't
-lost this phase's cost.
+AUDIT 2, PHASE A, RERUN WITH top_p PINNED (REVISION_PLAN.md Tier 1.3) --
+trajectory generation only, for d1_prob1 AND d2_prob1, run in TRUE
+PARALLEL (two containers via .starmap). Same split rationale as audit 1:
+this phase is cheap, so if Phase B (the expensive branching phase) fails,
+you haven't lost this phase's cost.
+
+WHY A RERUN: the first version of this audit (still on the volume at
+candidate_b_full_pilot/audit_censoring/, not overwritten by this script)
+ruled out censoring, but only under the DEFAULT generation config --
+HFBackend never supported pinning top_p at all, so the audit
+accidentally tested the scale-up track's configuration instead of the
+primary sample's actual top_p=0.95. early_stop/backend.py now supports
+top_p (see HFBackend.__init__'s docstring), and this script pins it, so
+this rerun tests what the original audit was supposed to test. Writes to
+a NEW output path (audit_censoring_toppinned/) so both results stay
+available side by side rather than one silently overwriting the other.
 
 QUESTION THIS AUDIT ANSWERS: is d1_prob1 and d2_prob1's "decisiveness
 gap" (one side of a matched pair trails off with an unclosed \\boxed{}
-far more often than the other) real, or token-budget right-censoring?
-The original branching used MAX_NEW_TOKENS_BRANCH=1500. d1_prob1 is a
-100-term enumeration; d2_prob1 is the dataset's one text-answer problem
--- both plausible candidates for needing more than 1500 tokens to close
-the box from a less-advanced prefix. See modal_audit2b_branch.py's
-docstring for how Phase B tests this.
+far more often than the other), AT THE CONFIGURATION THAT ACTUALLY
+PRODUCED IT, real, or token-budget right-censoring? The original
+branching used MAX_NEW_TOKENS_BRANCH=1500. d1_prob1 is a 100-term
+enumeration; d2_prob1 is the dataset's one text-answer problem -- both
+plausible candidates for needing more than 1500 tokens to close the box
+from a less-advanced prefix. See modal_audit2b_branch.py's docstring for
+how Phase B tests this.
 
 Does NOT reuse the original dataset's exact prefixes (never persisted,
 see CANDIDATE_B_PREREGISTRATION.md 2026-09-11 amendment) -- regenerates
-fresh trajectories for the same two problems.
+fresh trajectories for the same two problems, this time under top_p=0.95
+so the matched pairs themselves come from the configuration this audit
+is actually about.
 
 Cost: trajectory generation is cheap and roughly fixed regardless of
-branch budget; both problems together should be well under $1.
+branch budget; both problems together should be well under $1. (Real
+per-branch timing from the first audit run: d1_prob1/d2_prob1 combined
+Phase A+B came in well under $2 total -- top_p pinning does not change
+generation speed, only the sampling distribution.)
 
 Usage:
     pip install modal
@@ -33,7 +49,7 @@ Usage:
     modal run scripts/modal_audit2a_trajectories.py
 
 Then run:
-    modal run scripts/modal_audit2b_branch.py
+    modal run scripts/modal_audit2b_branch_toppinned.py
 """
 
 import pathlib
@@ -49,14 +65,15 @@ N_TRAJECTORIES = 10
 MAX_NEW_TOKENS_TRACE = 3000
 MAX_NEW_TOKENS_SCORE = 64
 TEMPERATURE = 0.6
+TOP_P = 0.95  # THE fix -- see module docstring. Matches the primary sample's real config.
 
 REPO_ROOT = pathlib.Path(__file__).resolve().parent.parent
 
-app = modal.App("candidate-b-audit2a-trajectories")
+app = modal.App("candidate-b-audit2a-trajectories-toppinned")
 
 volume = modal.Volume.from_name("candidate-b-results", create_if_missing=True)
 VOL_PATH = pathlib.Path("/vol")
-OUT_DIR_REL = "candidate_b_full_pilot/audit_censoring"
+OUT_DIR_REL = "candidate_b_full_pilot/audit_censoring_toppinned"
 
 image = (
     modal.Image.debian_slim(python_version="3.11")
@@ -98,6 +115,7 @@ def run_phase_a_one_problem(difficulty: str, problem_index: int, problem_id: str
     backend = HFBackend(
         model_name=MODEL_REPO, temperature=TEMPERATURE,
         param_count_b=DEEPSEEK_R1_DISTILL_QWEN_7B_PARAMS_B, precision="fp16",
+        top_p=TOP_P,
     )
     print(f"[{tag}] Model loaded in {time.time() - t0:.1f}s")
     volume.commit()
@@ -139,4 +157,4 @@ def main(n_trajectories: int = N_TRAJECTORIES):
     args = [(diff, idx, pid, n_trajectories) for diff, idx, pid in TARGET_PROBLEMS]
     results = list(run_phase_a_one_problem.starmap(args))
     print(f"\nDone: {results}")
-    print("Next: modal run scripts/modal_audit2b_branch.py")
+    print("Next: modal run scripts/modal_audit2b_branch_toppinned.py")
